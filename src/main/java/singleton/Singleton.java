@@ -3,9 +3,7 @@ package singleton;
 public class Singleton {
     private static Singleton instance = null;
 
-    private Singleton(){
-
-    }
+    private Singleton(){}
 
     //懒汉式，线程不安全
     public static Singleton getInstance(){
@@ -15,23 +13,14 @@ public class Singleton {
         return instance;
     }
 
-    //线程安全
+    //懒汉式，线程安全
     public static synchronized Singleton getInstance1() {
         if (instance == null) {
             instance = new Singleton();
         }
         return instance;
     }
-
-    //双检锁
-    public static Singleton getInstance2(){
-        if(null == instance){
-            synchronized(Singleton.class){
-                if(null == instance){
-                    instance = new Singleton();
-                }
-            }
-        }
-        return instance;
-    }
 }
+
+//参考文档：
+//1、http://www.blogjava.net/kenzhh/archive/2016/05/16/357824.html

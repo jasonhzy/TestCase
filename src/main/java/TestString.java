@@ -46,9 +46,10 @@ public class TestString {
         System.out.println(s2 == s7); //false
     }
 
-//    String 字符串常量
+//    String 字符串常量，不可变的，线程安全
 //    StringBuffer 字符串变量（线程安全）
 //    StringBuilder 字符串变量（非线程安全）
+// StringBuffer和StringBuilder，有公共父类AbstractStringBuilder(抽象类)，区别StringBuffer方法上加了synchronized
 
     /**
      * 字符串反转
@@ -56,7 +57,15 @@ public class TestString {
     @Test
     public void testStrRevi(){
         String str = "ABCDEF";
-        String newStr = new StringBuilder(str).reverse().toString();
+        //String newStr = new StringBuilder(str).reverse().toString();
+        String newStr = reverse(str);
         System.out.println(newStr);
+    }
+
+    public static String reverse(String originStr) {
+        if(originStr == null || originStr.length() <= 1){
+            return originStr;
+        }
+        return reverse(originStr.substring(1)) + originStr.charAt(0);
     }
 }
