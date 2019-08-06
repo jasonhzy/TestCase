@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 public class TestInteger {
 
     public static void change(Integer jj) {
@@ -10,26 +12,29 @@ public class TestInteger {
         System.out.println(jk);//返回，25
     }
 
-    public static void test2(){
+    @Test
+    public void test2(){
         Integer f1 = 100, f2 = 100, f3 = 150, f4 = 150, f5 = -128, f6 = -128, f7 = 127, f8 = 127;
 
-        System.out.println(f1 == f2);
-        System.out.println(f3 == f4);
-        System.out.println(f5 == f6);
-        System.out.println(f7 == f8);
+        System.out.println(f1 == f2); //true
+        System.out.println(f3 == f4); //false
+        System.out.println(f5 == f6); //true
+        System.out.println(f7 == f8); //true
     }
 
-    public static void test3(){
+    @Test
+    public void test3(){
         Integer a = new Integer(3);
         Integer b = 3;                  // 将3自动装箱成Integer类型
         int c = 3;
         System.out.println(a == b);     // false 两个引用没有引用同一对象
         System.out.println(a == c);     // true a自动拆箱成int类型再和c比较
+        System.out.println(b == c); //true
     }
 
 
     public static void main(String[] args) {
-        test3();
+
     }
 }
 
