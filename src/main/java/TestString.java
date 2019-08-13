@@ -36,6 +36,7 @@ public class TestString {
         String s7 = new String("Programming");
         String s8 = s3.concat(s4);
         String s9 = s1.concat("");
+        String s10 = "Program" + new String("ming");
         System.out.println(s1 == s2); //false
         System.out.println(s2 == s2.intern()); //false
 
@@ -48,6 +49,7 @@ public class TestString {
         System.out.println(s2 == s7); //false
         System.out.println(s1 == s8); //false
         System.out.println(s1 == s9); //true
+        System.out.println(s1 == s10); //false
     }
 
 //    String 字符串常量，不可变的，线程安全
