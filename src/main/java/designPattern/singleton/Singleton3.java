@@ -1,4 +1,4 @@
-package singleton;
+package designPattern.singleton;
 
 public class Singleton3 {
 

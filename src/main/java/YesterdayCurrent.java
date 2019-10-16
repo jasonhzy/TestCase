@@ -35,4 +35,9 @@ public class YesterdayCurrent {
         String time = f.format(date.getTime());
         System.out.println("格式化结果：" + time);
     }
+
+    @Test
+    public void testTime(){
+        System.out.println(System.currentTimeMillis());
+    }
 }

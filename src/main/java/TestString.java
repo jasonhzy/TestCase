@@ -74,4 +74,43 @@ public class TestString {
         }
         return reverse(originStr.substring(1)) + originStr.charAt(0);
     }
+
+
+    @Test
+    public void testlen(){
+        String str = "";
+        System.out.print(str.split(",").length);
+    }
+
+    @Test
+    public void testReplaceAll(){
+        String classFile = "com.jd.". replaceAll(".", "/") + "MyClass.class";
+        System.out.println(classFile);
+    }
+
+    @Test
+    public void testResult(){
+//为初始化，编译不通过。原因：成员变量有初始值，而局部变量没有初始值
+//        String s;
+//        System.out.println("s="+s);
+    }
+
+    @Test
+    public void testSubstring(){
+        String subStr="123456789";
+        //示例1、正常情况：由下面两个例子可以发现下标是从1而不是0开始的
+        System.out.println(subStr.substring(0));//输出:123456789
+        System.out.println(subStr.substring(1));//输出:23456789
+        System.out.println(subStr.substring(subStr.length()));//输出空符串
+
+        //示例2、字符超长（直接报错）
+        //System.out.println(subStr.substring(subStr.length()+1));
+        //报错：java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+
+        //示例3、输入负数（直接报错，可我怎么听说是反着截取出来的呢，难道是我张冠李戴了？）
+        //System.out.println(subStr.substring(-5));
+        //报错：java.lang.StringIndexOutOfBoundsException: String index out of range: -5
+        System.out.println(subStr.substring(1, 1));
+        System.out.println(subStr.substring(0,10));
+    }
 }
