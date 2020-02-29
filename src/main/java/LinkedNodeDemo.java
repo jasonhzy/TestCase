@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 public class LinkedNodeDemo {
     /**
      * 单向链表定义
@@ -9,22 +11,9 @@ public class LinkedNodeDemo {
         public Node() {
         }
 
-        public Node(T value, Node next) {
+        public Node(T value) {
             this.value = value;
-            this.next = next;
         }
-    }
-
-    /**
-     * 打印链表
-     **/
-    private void print(Node head) {
-        Node node = head;
-        while (node != null) {
-            System.out.print(node.value + "\t");
-            node = node.next;
-        }
-        System.out.println();
     }
 
 
@@ -75,7 +64,7 @@ public class LinkedNodeDemo {
         Node temp = null;
         Node p = head.next;
         head.next = null;
-        while ( p != null) {
+        while (p != null) {
             temp = p.next;
             p.next = head;
             head = p;
@@ -84,14 +73,13 @@ public class LinkedNodeDemo {
         return head;
     }
 
-    public Node reverse2(Node current)
-    {
+    public Node reverse2(Node current) {
         if (current == null || current.next == null) {
             return current;
         }
         Node nextNode = current.next;
         current.next = null;
-        Node reverseRest = reverse(nextNode);
+        Node reverseRest = reverse2(nextNode);
         nextNode.next = current;
         return reverseRest;
     }
@@ -100,32 +88,36 @@ public class LinkedNodeDemo {
      * 初始化链表
      **/
     private Node initLinkedList(int num) {
-        Node head = new Node(0, null);
+        Node head = new Node(0);
         Node cur = head;
         for (int i = 1; i < num; i++) {
-            cur.next = new Node(i, null);
+            cur.next = new Node(i);
             cur = cur.next;
         }
         return head;
     }
 
+    /**
+     * 打印链表
+     **/
+    private void print(Node node) {
+        while (node != null) {
+            System.out.print(node.value + "\t");
+            node = node.next;
+        }
+        System.out.println();
+    }
 
-
+    @Test
     public void test() {
         Node head = initLinkedList(5);
         print(head);
         System.out.println("**************");
         //反转链表
 //        Node node = reverse(head);
-        Node node = reverse0(head);
+//        Node node = reverse0(head);
 //        Node node = reverse1(head);
-//        Node node = reverse2(head);
+        Node node = reverse2(head);
         print(node);
     }
-
-    public static void main(String[] args) {
-        LinkedNodeDemo demo = new LinkedNodeDemo();
-        demo.test();
-    }
-
 }

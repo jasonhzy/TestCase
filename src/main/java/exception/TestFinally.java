@@ -115,7 +115,7 @@ public class TestFinally {
     }
 
     public Map<String, String> getMap() {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("KEY", "INIT");
 
         try {

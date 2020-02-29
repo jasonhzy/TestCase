@@ -9,6 +9,9 @@ import java.util.Date;
 
 public class YesterdayCurrent {
 
+    /**
+     * 打印昨天的当前时刻
+     */
     @Test
     public void test1(){
         Calendar cal = Calendar.getInstance();

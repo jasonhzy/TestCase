@@ -32,32 +32,47 @@ public class TestInteger {
         System.out.println(b == c); //true
     }
 
-
-    public static void main(String[] args) {
-
+    //中间缓存变量
+    @Test
+    public void test4() {
+        int j = 0;
+        for (int i = 0; i < 100; i++){
+            j = j++; //  即为： temp = j; j = j + 1; j = temp;
+        }
+        System.out.println(j);
     }
+
+    @Test
+    public void test5() {
+        int j = 0;
+        for (int i = 0; i < 100; i++){
+            j = ++j; //即为： j = j + 1; temp = j; j = temp;
+        }
+        System.out.println(j);
+    }
+
 }
 
-//class Demo{
-//    int a;
-//    public Demo(int a){
-//        this.a=a;
-//    }
-//}
-//class TestQuote{
-//    public static void main(String args[]){
-//        Demo d1=new Demo(1);
-//        Demo d2=new Demo(2);
-//        System.out.println(d1.a);
-//        System.out.println(d2.a);
-//        function(d1,d2);
-//        System.out.println(d1.a);
-//        System.out.println(d2.a);
-//    }
-//    private static void function(Demo d1,Demo d2){
-//        Demo temp;
-//        temp=d1;
-//        d1=d2;
-//        d2=temp;
-//    }
-//}
+class Demo{
+    int a;
+    public Demo(int a){
+        this.a=a;
+    }
+}
+class TestQuote{
+    public static void main(String args[]){
+        Demo d1=new Demo(1);
+        Demo d2=new Demo(2);
+        System.out.println(d1.a);
+        System.out.println(d2.a);
+        function(d1,d2);
+        System.out.println(d1.a);
+        System.out.println(d2.a);
+    }
+    private static void function(Demo d1,Demo d2){
+        Demo temp;
+        temp=d1;
+        d1=d2;
+        d2=temp;
+    }
+}

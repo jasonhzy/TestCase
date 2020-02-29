@@ -20,19 +20,19 @@ public class TestSync {
     }
 
     public static void main(String[] args) {
-        TestSync sync = new TestSync();
-        new Thread(new Runnable(){
-            @Override
-            public void run() {
-                sync.test();
-            }
-        }, "t1").start();
-
-        new Thread(new Runnable(){
-            @Override
-            public void run() {
-                sync.test();
-            }
-        },"t2").start();
+//        TestSync sync = new TestSync();
+//        new Thread(new Runnable(){
+//            @Override
+//            public void run() {
+//                sync.test();
+//            }
+//        }, "t1").start();
+//
+//        new Thread(new Runnable(){
+//            @Override
+//            public void run() {
+//                sync.test();
+//            }
+//        },"t2").start();
     }
 }
