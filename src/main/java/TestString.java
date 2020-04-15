@@ -1,7 +1,9 @@
+import java.io.File;
+import java.net.InetAddress;
+import java.util.*;
+
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
-
-import java.util.*;
 
 public class TestString {
     @Test
@@ -23,6 +25,21 @@ public class TestString {
         set.add("1");
         set.add("1");
         System.out.println(set);
+
+
+        Set<Integer> setA = new HashSet<Integer>();
+        setA.add(1);
+        setA.add(2);
+        setA.add(3);
+        setA.add(4);
+
+        Set<Integer> setB = new HashSet<Integer>();
+        setB.add(3);
+        setB.add(4);
+        setB.add(5);
+        setB.add(6);
+        setA.removeAll(setB);
+        System.out.println(setA);
     }
 
     @Test
@@ -269,21 +286,6 @@ public class TestString {
         System.out.println(!StringUtils.isEmpty(s));
     }
 
-
-    @Test
-    public void testRemainder(){
-        int  amount = 189;
-        System.out.println(amount / 10);
-
-
-        Long a = 1000000000000000000L;
-        Integer b = 999999999;
-        System.out.println(a.intValue());
-        if(a < b.longValue() ){
-            System.out.println("true");
-        }
-    }
-
     @Test
     public void testSwitch(){ // 出现NullPointerException
         String type = null;
@@ -308,5 +310,86 @@ public class TestString {
         String s = " ";
         System.out.println(StringUtils.isBlank(s));
         System.out.println(StringUtils.isEmpty(s));
+    }
+
+    @Test
+    public void testLongAndLatitude(){
+        double lng = 120.7369183;
+        double lat = 31.25638333;
+
+        int dist = 200000; //距离范围
+
+        double lng1 = lng - dist/Math.abs(Math.cos(lat* Math.PI/180)*111044.736);
+        double lng2 = lng + dist/Math.abs(Math.cos(lat* Math.PI/180)*111044.736);
+        double lat1 = lat - (dist/111044.736);
+        double lat2 = lat + (dist/111044.736);
+        System.out.println(lng1);
+        System.out.println(lng2);
+        System.out.println(lat1);
+        System.out.println(lat2);
+
+
+        double lng11 = lng - dist/Math.abs(Math.cos(Math.toRadians(lat))*111044.736);
+        double lng22 = lng + dist/Math.abs(Math.cos(Math.toRadians(lat))*111044.736);
+        double lat11 = lat - (dist/111044.736);
+        double lat22 = lat + (dist/111044.736);
+        System.out.println(lng11);
+        System.out.println(lng22);
+        System.out.println(lat11);
+        System.out.println(lat22);
+    }
+
+    private Date getNextNDate(Date date, int n) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int day = calendar.get(Calendar.DATE);
+        calendar.set(Calendar.DATE, day + n);
+        return calendar.getTime();
+    }
+
+    @Test
+    public void test11(){
+        System.out.println(getNextNDate(new Date(), 0));
+    }
+
+
+    public String getLocalhost() {
+        try {
+            InetAddress ia = InetAddress.getLocalHost();
+            String localname = ia.getHostAddress();
+            return localname;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Test
+    public void testIp(){
+        System.out.println(getLocalhost());
+    }
+
+    @Test
+    public void testCompareStr(){
+        String a = "300";
+        String b = "1000";
+
+        System.out.println(b.compareTo(a));
+    }
+
+    @Test
+    public void testIdcard(){ //身份证判定性别
+        String idcard = "413026198709172";
+
+        int sex = 1;
+        if(idcard.length() == 15 && Integer.parseInt(idcard.substring(14, 15)) % 2 != 1){
+            sex = 2;
+        }
+        if(idcard.length() == 18 && Integer.parseInt(idcard.substring(16, 17)) % 2 != 1){
+            sex = 2;
+        }
+        System.out.println(sex);
+
+        System.out.println(File.separator);
     }
 }

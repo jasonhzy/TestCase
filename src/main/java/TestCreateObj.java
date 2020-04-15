@@ -2,6 +2,7 @@ import org.junit.Test;
 
 import java.io.*;
 import java.lang.reflect.Constructor;
+import java.util.UUID;
 
 // 1、使用new关键字
 // ClassA a = new ClassA();
@@ -113,6 +114,12 @@ public class TestCreateObj {
 
         student.print("test");
         System.out.println(student.hashCode());
+
+        System.out.println(UUID.randomUUID());
+
+        Object a = null;
+        Long timestamp = Long.valueOf(String.valueOf(""));
+        System.out.println(timestamp);
     }
 
 }
