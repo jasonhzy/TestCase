@@ -1,4 +1,3 @@
-import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,9 +5,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import org.junit.Test;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import org.junit.Test;
 
 public class TestTime {
 
@@ -90,7 +90,7 @@ public class TestTime {
 
     }
 
-    public Map<String, Integer> getDateDetail(String strDate, String format){
+    public Map<String, Integer> getDateDetail(String strDate, String format) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
         LocalDateTime ldt = LocalDateTime.parse(strDate, formatter);
 
@@ -105,7 +105,6 @@ public class TestTime {
         return detail;
     }
 
-
     @Test
     public void getDay() {
         String strDate = "2020-03-14 20:27:30";
@@ -117,13 +116,11 @@ public class TestTime {
                 + detail.get("date") + " " + detail.get("month") + " ? " + detail.get("year");
         System.out.println(expression);
 
-
         Date date = null;
-        try{
+        try {
             SimpleDateFormat formatter = new SimpleDateFormat(format);
             date = formatter.parse(strDate);
-        } catch (ParseException e) {
-        }
+        } catch (ParseException e) {}
 
         System.out.println(90 * 24 * 60 * 60 * 1000L);
 
@@ -131,7 +128,7 @@ public class TestTime {
         calendar.setTime(date);
         int day = calendar.get(Calendar.DATE);
         calendar.set(Calendar.DATE, day + 1);
-        System.out.println( calendar.getTime());
+        System.out.println(calendar.getTime());
 
     }
 
@@ -140,23 +137,22 @@ public class TestTime {
     }
 
     @Test
-    public void testEnum(){
-//        System.out.println(TypeEnum.valueOf("PUSH1"));
+    public void testEnum() {
+        // System.out.println(TypeEnum.valueOf("PUSH1"));
         JSONArray ids = JSONObject.parseArray("");
         System.out.println(ids);
-        if(null != ids){
+        if (null != ids) {
             System.out.println(ids.get(0));
         }
 
         System.out.println(JSONObject.toJSONString(null));
 
-
         Map<Integer, Integer> map = new HashMap<>();
         map.put(1, 1);
         map.put(2, 1);
-        if(map == null || map.isEmpty()){
+        if (map == null || map.isEmpty()) {
             System.out.println("test");
-        };
+        }
 
         int a = map.get(1);
         int b = map.get(2);
@@ -165,7 +161,6 @@ public class TestTime {
         System.out.println(b);
 
     }
-
 
     public Date getLastDate(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -217,12 +212,23 @@ public class TestTime {
         return calendar.getTime();
     }
 
+    public Date getPreviousNHour(Date date, int n) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int hour = calendar.get(Calendar.HOUR);
+        calendar.set(Calendar.HOUR, hour - n);
+        return calendar.getTime();
+    }
+
     @Test
-    public void testTime(){
+    public void testTime() {
         Date date = new Date(getLastDayOfMonth(System.currentTimeMillis()));
 
         System.out.println(date);
         System.out.println(getNextNDate(date, 1));
-    }
+        System.out.println(getNextNDate(new Date(), 1));
 
+        System.out.println(new Date());
+        System.out.println(getPreviousNHour(new Date(), -12));
+    }
 }

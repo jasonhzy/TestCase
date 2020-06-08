@@ -1,46 +1,15 @@
+package dataType;
+
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
+import org.springframework.util.CollectionUtils;
 
 public class TestString {
-    @Test
-    public void testString() {
-        HashSet<StringBuilder> hs = new HashSet<StringBuilder>();
-        StringBuilder sb1 = new StringBuilder("aaa");
-        StringBuilder sb2 = new StringBuilder("aaabbb");
-        hs.add(sb1);
-        hs.add(sb2);    //这时候HashSet里是{"aaa","aaabbb"}
-
-        StringBuilder sb3 = sb1;
-        sb3.append("bbb");  //这时候HashSet里是{"aaabbb","aaabbb"}
-        System.out.println(hs);
-    }
-
-    @Test
-    public void testSet() {
-        Set set = new HashSet<String>();
-        set.add("1");
-        set.add("1");
-        System.out.println(set);
-
-
-        Set<Integer> setA = new HashSet<Integer>();
-        setA.add(1);
-        setA.add(2);
-        setA.add(3);
-        setA.add(4);
-
-        Set<Integer> setB = new HashSet<Integer>();
-        setB.add(3);
-        setB.add(4);
-        setB.add(5);
-        setB.add(6);
-        setA.removeAll(setB);
-        System.out.println(setA);
-    }
 
     @Test
     public void test1() {
@@ -54,25 +23,25 @@ public class TestString {
         String s8 = s3.concat(s4);
         String s9 = s1.concat("");
         String s10 = "Program" + new String("ming");
-        System.out.println(s1 == s2); //false
-        System.out.println(s2 == s2.intern()); //false
+        System.out.println(s1 == s2); // false
+        System.out.println(s2 == s2.intern()); // false
 
-        System.out.println(s1 == s5); //true
-        //字符串的+操作其本质是创建了StringBuilder对象进行append操作，然后将拼接后的StringBuilder
+        System.out.println(s1 == s5); // true
+        // 字符串的+操作其本质是创建了StringBuilder对象进行append操作，然后将拼接后的StringBuilder
         // 对象用toString方法处理成String对象
-        //可以用javap -c TestString.class命令获得class文件对应的JVM字节码指令就可以看出来
-        System.out.println(s1 == s6); //false
-        System.out.println(s1 == s6.intern()); //true
-        System.out.println(s2 == s7); //false
-        System.out.println(s1 == s8); //false
-        System.out.println(s1 == s9); //true
-        System.out.println(s1 == s10); //false
+        // 可以用javap -c dataType.TestString.class命令获得class文件对应的JVM字节码指令就可以看出来
+        System.out.println(s1 == s6); // false
+        System.out.println(s1 == s6.intern()); // true
+        System.out.println(s2 == s7); // false
+        System.out.println(s1 == s8); // false
+        System.out.println(s1 == s9); // true
+        System.out.println(s1 == s10); // false
     }
 
-//    String 字符串常量，不可变的，线程安全
-//    StringBuffer 字符串变量（线程安全）
-//    StringBuilder 字符串变量（非线程安全）
-//    StringBuffer和StringBuilder，有公共父类AbstractStringBuilder(抽象类)，区别StringBuffer方法上加了synchronized
+    // String 字符串常量，不可变的，线程安全
+    // StringBuffer 字符串变量（线程安全）
+    // StringBuilder 字符串变量（非线程安全）
+    // StringBuffer和StringBuilder，有公共父类AbstractStringBuilder(抽象类)，区别StringBuffer方法上加了synchronized
 
     @Test
     public void testlen() {
@@ -88,26 +57,26 @@ public class TestString {
 
     @Test
     public void testResult() {
-//        为初始化，编译不通过。原因：成员变量有初始值，而局部变量没有初始值
-//        String s;
-//        System.out.println("s="+s);
+        // 为初始化，编译不通过。原因：成员变量有初始值，而局部变量没有初始值
+        // String s;
+        // System.out.println("s="+s);
     }
 
     @Test
     public void testSubstring() {
         String subStr = "123456789";
-        //示例1、正常情况：由下面两个例子可以发现下标是从1而不是0开始的
-        System.out.println(subStr.substring(0));//输出:123456789
-        System.out.println(subStr.substring(1));//输出:23456789
-        System.out.println(subStr.substring(subStr.length()));//输出空符串
+        // 示例1、正常情况：由下面两个例子可以发现下标是从1而不是0开始的
+        System.out.println(subStr.substring(0));// 输出:123456789
+        System.out.println(subStr.substring(1));// 输出:23456789
+        System.out.println(subStr.substring(subStr.length()));// 输出空符串
 
-        //示例2、字符超长（直接报错）
-        //System.out.println(subStr.substring(subStr.length()+1));
-        //报错：java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+        // 示例2、字符超长（直接报错）
+        // System.out.println(subStr.substring(subStr.length()+1));
+        // 报错：java.lang.StringIndexOutOfBoundsException: String index out of range: -1
 
-        //示例3、输入负数（直接报错，可我怎么听说是反着截取出来的呢，难道是我张冠李戴了？）
-        //System.out.println(subStr.substring(-5));
-        //报错：java.lang.StringIndexOutOfBoundsException: String index out of range: -5
+        // 示例3、输入负数（直接报错，可我怎么听说是反着截取出来的呢，难道是我张冠李戴了？）
+        // System.out.println(subStr.substring(-5));
+        // 报错：java.lang.StringIndexOutOfBoundsException: String index out of range: -5
         System.out.println(subStr.substring(1, 1));
         System.out.println(subStr.substring(0, 10));
     }
@@ -118,7 +87,7 @@ public class TestString {
     @Test
     public void testStrRevi() {
         String str = "ABCDEF";
-        //String newStr = new StringBuilder(str).reverse().toString();
+        // String newStr = new StringBuilder(str).reverse().toString();
         String newStr = reverse(str);
         System.out.println(newStr);
     }
@@ -157,9 +126,9 @@ public class TestString {
     }
 
     @Test
-    public void testPalindrome(){
+    public void testPalindrome() {
         String str = "好吗好";
-        //boolean b = isPalindrome(str);
+        // boolean b = isPalindrome(str);
         boolean b = isPalindromeString(str);
 
         System.out.println(b);
@@ -178,22 +147,20 @@ public class TestString {
     /**
      * 编写一个程序来打印String的所有排列？
      *
-     * 排列是有序的字符列表的元素的重新排列，使得每个排列相对于其他排列是唯一的。
-     * 例如下面是字符串“ABC”的排列 – ABC ACB BAC BCA CBA CAB。
+     * 排列是有序的字符列表的元素的重新排列，使得每个排列相对于其他排列是唯一的。 例如下面是字符串“ABC”的排列 – ABC ACB BAC BCA CBA CAB。
      */
-    public static Set<String> getPermutations(String string)
-    {
-        //All permutations
+    public static Set<String> getPermutations(String string) {
+        // All permutations
         Set<String> permutationsSet = new HashSet<String>();
         // invalid strings
-        if (string == null || string.length() == 0){
+        if (string == null || string.length() == 0) {
             permutationsSet.add("");
         } else {
-            //First character in String
+            // First character in String
             char initial = string.charAt(0);
-            //Full string without first character
+            // Full string without first character
             String rem = string.substring(1);
-            //Recursive call
+            // Recursive call
             Set<String> wordSet = getPermutations(rem);
             for (String word : wordSet) {
                 for (int i = 0; i <= word.length(); i++) {
@@ -204,38 +171,36 @@ public class TestString {
         return permutationsSet;
     }
 
-    public static String charInsertAt(String str, char c, int position)
-    {
+    public static String charInsertAt(String str, char c, int position) {
         String begin = str.substring(0, position);
         String end = str.substring(position);
         return begin + c + end;
     }
 
     @Test
-    public void testPermutation()
-    {
+    public void testPermutation() {
         System.out.println(getPermutations("ABC"));
-        //Prints
-        //[ACB, BCA, ABC, CBA, BAC, CAB]
+        // Prints
+        // [ACB, BCA, ABC, CBA, BAC, CAB]
     }
 
     @Test
-    public void testSplit(){
+    public void testSplit() {
         String scopeCodes = "";
         String codeArr[] = scopeCodes.split(",");
         String code = "";
-        if(codeArr.length > 1){
+        if (codeArr.length > 1) {
             code = codeArr[0];
-        }else if(codeArr.length == 1){
+        } else if (codeArr.length == 1) {
             code = scopeCodes;
-        }else{
-            //TODO...
+        } else {
+            // TODO...
         }
         System.out.println(code);
     }
 
     @Test
-    public void testArr(){
+    public void testArr() {
         List<Integer> list1 = new ArrayList<Integer>();
         list1.add(1);
         list1.add(2);
@@ -269,9 +234,9 @@ public class TestString {
         System.out.println(bool);
         System.out.println(list1.toString());
 
-//        boolean b2 = list3.retainAll(list2);
-//        System.out.println(b2);
-//        System.out.println(list3.toString());
+        // boolean b2 = list3.retainAll(list2);
+        // System.out.println(b2);
+        // System.out.println(list3.toString());
 
         boolean b3 = list3.retainAll(list5);
         System.out.println(b3);
@@ -279,18 +244,18 @@ public class TestString {
     }
 
     @Test
-    public void testRemoveStr(){
-        String  s = "";
+    public void testRemoveStr() {
+        String s = "";
         System.out.println(s.substring(0));
 
         System.out.println(!StringUtils.isEmpty(s));
     }
 
     @Test
-    public void testSwitch(){ // 出现NullPointerException
+    public void testSwitch() { // 出现NullPointerException
         String type = null;
 
-        switch (type){
+        switch (type) {
             case "1":
                 System.out.println(type);
                 break;
@@ -300,10 +265,9 @@ public class TestString {
     }
 
     @Test
-    public void testList(){
-        List<String> ACTIVITY_DAYS = Arrays.asList(
-                "2020-02-27", "2020-02-28", "2020-02-29", "2020-03-01", "2020-03-02", "2020-03-03",
-                "2020-03-06", "2020-03-07", "2020-03-08", "2020-03-09");
+    public void testList() {
+        List<String> ACTIVITY_DAYS = Arrays.asList("2020-02-27", "2020-02-28", "2020-02-29", "2020-03-01", "2020-03-02",
+                "2020-03-03", "2020-03-06", "2020-03-07", "2020-03-08", "2020-03-09");
 
         System.out.println(ACTIVITY_DAYS.contains("2020-03-08"));
 
@@ -313,26 +277,25 @@ public class TestString {
     }
 
     @Test
-    public void testLongAndLatitude(){
+    public void testLongAndLatitude() {
         double lng = 120.7369183;
         double lat = 31.25638333;
 
-        int dist = 200000; //距离范围
+        int dist = 200000; // 距离范围
 
-        double lng1 = lng - dist/Math.abs(Math.cos(lat* Math.PI/180)*111044.736);
-        double lng2 = lng + dist/Math.abs(Math.cos(lat* Math.PI/180)*111044.736);
-        double lat1 = lat - (dist/111044.736);
-        double lat2 = lat + (dist/111044.736);
+        double lng1 = lng - dist / Math.abs(Math.cos(lat * Math.PI / 180) * 111044.736);
+        double lng2 = lng + dist / Math.abs(Math.cos(lat * Math.PI / 180) * 111044.736);
+        double lat1 = lat - (dist / 111044.736);
+        double lat2 = lat + (dist / 111044.736);
         System.out.println(lng1);
         System.out.println(lng2);
         System.out.println(lat1);
         System.out.println(lat2);
 
-
-        double lng11 = lng - dist/Math.abs(Math.cos(Math.toRadians(lat))*111044.736);
-        double lng22 = lng + dist/Math.abs(Math.cos(Math.toRadians(lat))*111044.736);
-        double lat11 = lat - (dist/111044.736);
-        double lat22 = lat + (dist/111044.736);
+        double lng11 = lng - dist / Math.abs(Math.cos(Math.toRadians(lat)) * 111044.736);
+        double lng22 = lng + dist / Math.abs(Math.cos(Math.toRadians(lat)) * 111044.736);
+        double lat11 = lat - (dist / 111044.736);
+        double lat22 = lat + (dist / 111044.736);
         System.out.println(lng11);
         System.out.println(lng22);
         System.out.println(lat11);
@@ -348,10 +311,9 @@ public class TestString {
     }
 
     @Test
-    public void test11(){
+    public void test11() {
         System.out.println(getNextNDate(new Date(), 0));
     }
-
 
     public String getLocalhost() {
         try {
@@ -365,12 +327,12 @@ public class TestString {
     }
 
     @Test
-    public void testIp(){
+    public void testIp() {
         System.out.println(getLocalhost());
     }
 
     @Test
-    public void testCompareStr(){
+    public void testCompareStr() {
         String a = "300";
         String b = "1000";
 
@@ -378,18 +340,57 @@ public class TestString {
     }
 
     @Test
-    public void testIdcard(){ //身份证判定性别
+    public void testIdcard() { // 身份证判定性别
         String idcard = "413026198709172";
 
         int sex = 1;
-        if(idcard.length() == 15 && Integer.parseInt(idcard.substring(14, 15)) % 2 != 1){
+        if (idcard.length() == 15 && Integer.parseInt(idcard.substring(14, 15)) % 2 != 1) {
             sex = 2;
         }
-        if(idcard.length() == 18 && Integer.parseInt(idcard.substring(16, 17)) % 2 != 1){
+        if (idcard.length() == 18 && Integer.parseInt(idcard.substring(16, 17)) % 2 != 1) {
             sex = 2;
         }
         System.out.println(sex);
 
         System.out.println(File.separator);
+    }
+
+    @Test
+    public void testEncode() {
+        String resp = "277120$$$$18652420434$$$$2020/5/7 16:18:42$$$$³É¹¦$$$$DELIVRD||||277120$$$$15962143194$$$$2020/5/7 16:25:18$$$$Ê§°Ü$$$$WX-FAIL||||277120$$$$17096851003$$$$2020/5/7 16:18:42$$$$³É¹¦$$$$DELIVRD||||277120$$$$15250080297$$$$2020/5/7 16:25:18$$$$Ê§°Ü$$$$WX-FAIL";
+        String result = null;
+        try {
+            result = new String(resp.getBytes("ISO-8859-1"), "GBK");
+        } catch (UnsupportedEncodingException e) {
+
+        }
+
+        String[] strArr = result.split("\\|\\|\\|\\|");
+        for (String record : strArr) {
+            if (record.length() > 0) {
+                System.out.println(record);
+                // String[] detail = record.split("$$$$");
+                // System.out.println(JSONObject.toJSONString(detail));
+            }
+
+        }
+    }
+
+    public boolean empty(Object s) {
+        if (s == null || s.toString().trim().equals("")) {
+            return true;
+        }
+        return false;
+
+    }
+
+    @Test
+    public void testList1() {
+        List<String> list = new ArrayList<>();
+        System.out.println(empty(list));
+
+        System.out.println(CollectionUtils.isEmpty(list));
+
+        System.out.println("8007".replaceFirst("E:0", ""));
     }
 }

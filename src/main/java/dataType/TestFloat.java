@@ -1,3 +1,5 @@
+package dataType;
+
 /**
  * 自动转换按从低到高的顺序转换。不同类型数据间的优先关系如下：
  * 低 ———————————————> 高
@@ -17,10 +19,10 @@ public class TestFloat {
         return i;
     }
 
-//    float func1() {
-//        int i = 1;
-//        return;
-//    }
+    // float func1() {
+    // int i = 1;
+    // return;
+    // }
 
     float func2() {
         short i = 2;
@@ -32,8 +34,8 @@ public class TestFloat {
         return i;
     }
 
-//    float func4() {
-//        double i = 4;
-//        return i;
-//    }
+    // float func4() {
+    // double i = 4;
+    // return i;
+    // }
 }

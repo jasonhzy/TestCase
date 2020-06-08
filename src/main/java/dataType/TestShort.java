@@ -1,11 +1,13 @@
+package dataType;
+
 public class TestShort {
 
-    public static void test1(){
+    public static void test1() {
         short s1 = 1;
-        //s1 = s1 + 1;
+        // s1 = s1 + 1;
     }
 
-    public static void test2(){
+    public static void test2() {
         short s1 = 1;
         s1 += 1;
     }
@@ -15,4 +17,3 @@ public class TestShort {
         test2();
     }
 }
-

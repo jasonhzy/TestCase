@@ -1,3 +1,5 @@
+package dataType;
+
 import org.junit.Test;
 
 public class TestLong {
