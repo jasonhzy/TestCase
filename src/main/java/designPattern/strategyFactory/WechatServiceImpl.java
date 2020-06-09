@@ -13,6 +13,6 @@ public class WechatServiceImpl implements LoginService {
 
     @Override
     public void loginHandler(Map<String, String> params) {
-
+        System.out.println("wechat");
     }
 }

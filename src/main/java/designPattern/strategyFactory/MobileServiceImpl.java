@@ -9,6 +9,6 @@ public class MobileServiceImpl implements LoginService {
 
     @Override
     public void loginHandler(Map<String, String> params){
-
+        System.out.println("mobile");
     }
 }
