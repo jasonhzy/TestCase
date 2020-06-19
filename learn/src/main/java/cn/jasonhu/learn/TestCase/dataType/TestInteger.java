@@ -74,7 +74,7 @@ public class TestInteger {
      *    b. 进行+，-，*，/混合运算 （拆箱）
      *    c. 进行>,<,==比较运算（拆箱）
      *    d. 调用equals进行比较（装箱）
-     *    e. ArrayList,HashMap等集合类 添加基础类型数据时（装箱）
+     *    e. ArrayList,HashMap等集合类添加基础类型数据时（装箱）
      */
     @Test
     public void test7() {

@@ -31,4 +31,26 @@ public class TestLong {
         System.out.println(b == d);
     }
 
+    /**
+     * 1、switch 控制表达式支持的类型有byte、short、char、int、enum（Java 5）、String(Java 7)。不支持boolean、long、float、double
+     * 2、必须先进行null的判断
+     * 3、String字符串的switch是通过equals()和hashCode()方法来实现的
+     */
+    @Test
+    public void testSwitch(){
+        //long作为参数时，报错
+//        Long a = 10L;
+//        switch (a){
+//            case 10L:
+//                break;
+//        }
+        //boolean作为参数时，报错
+//        boolean a = false;
+//        switch (a){
+//            case true:
+//                break;
+//        }
+
+    }
+
 }
