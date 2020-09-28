@@ -1,5 +1,6 @@
 package cn.jasonhu.learn.TestCase.thread;
 
+// 线程状态：http://codingdict.com/article/11931
 public class TestThread extends Thread {
 
     @Override

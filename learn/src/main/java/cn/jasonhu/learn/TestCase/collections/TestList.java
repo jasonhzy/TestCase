@@ -1,10 +1,12 @@
 package cn.jasonhu.learn.TestCase.collections;
 
+import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import org.junit.Test;
 
 public class TestList {
 
@@ -54,6 +56,15 @@ public class TestList {
         }
 
         System.out.println(list);
+    }
+
+
+    @Test
+    public void test4(){
+        List<Integer> ids = Lists.newArrayList();
+        if(CollectionUtils.isNotEmpty(ids)){
+            System.out.println(true);
+        }
     }
 
 }

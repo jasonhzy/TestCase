@@ -21,3 +21,5 @@ public class LearnApplication {
         application.run(args);
     }
 }
+
+//springboot启动原理：https://www.jianshu.com/p/943650ab7dfd
