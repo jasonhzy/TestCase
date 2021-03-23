@@ -29,15 +29,20 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
+
+        <dependency>
+          <groupId>com.baomidou</groupId>
+          <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
-    <build>
-        <!-- 一定要声明如下配置-->
-        <resources>
-            <resource>
+  <build>
+      <!-- 一定要声明如下配置-->
+       <resources>
+           <resource>
                 <directory>src/main/java</directory>
                 <includes>
-                    <include>**/*.xml</include>
+                <include>**/*.xml</include>
                 </includes>
             </resource>
             <resource>

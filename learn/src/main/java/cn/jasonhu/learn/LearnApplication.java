@@ -1,7 +1,7 @@
 package cn.jasonhu.learn;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration;
@@ -10,10 +10,10 @@ import org.springframework.boot.autoconfigure.elasticsearch.jest.JestAutoConfigu
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
-@SpringBootApplication
-@EnableAutoConfiguration(exclude={ElasticsearchAutoConfiguration.class,ElasticsearchDataAutoConfiguration.class,
+@SpringBootApplication(exclude={ElasticsearchAutoConfiguration.class,ElasticsearchDataAutoConfiguration.class,
         ElasticsearchRepositoriesAutoConfiguration.class, JestAutoConfiguration.class, DataSourceAutoConfiguration.class})
-@ComponentScan(basePackages = { "cn.jasonhu.learn", "cn.jasonhu.jdbc"})
+@ComponentScan(basePackages = { "cn.jasonhu.learn", "cn.jasonhu.jdbc", "cn.jasonhu.impl"})
+@MapperScan({"cn.jasonhu.impl.mapper"})
 public class LearnApplication {
 
     public static void main(String[] args) {

@@ -1,10 +1,17 @@
 package cn.jasonhu.learn.TestCase.dataType;
 
+import cn.jasonhu.commons.Utils.MD5Util;
+import com.alibaba.fastjson.JSON;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.net.InetAddress;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
+import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 import org.springframework.util.CollectionUtils;
@@ -191,15 +198,20 @@ public class TestString {
 
     @Test
     public void testSplit() {
-        String scopeCodes = "";
+        String scopeCodes = "1,";
         String codeArr[] = scopeCodes.split(",");
         String code = "";
         if (codeArr.length > 1) {
-            code = codeArr[0];
+            code = codeArr[1];
+            System.out.println(">1==>" + code);
+            System.out.println(JSON.toJSONString(codeArr));
         } else if (codeArr.length == 1) {
-            code = scopeCodes;
+            code = codeArr[0];
+            System.out.println("1==>" + code);
+            System.out.println(JSON.toJSONString(codeArr));
         } else {
             // TODO...
+            System.out.println();
         }
         System.out.println(code);
     }
@@ -260,13 +272,33 @@ public class TestString {
     public void testSwitch() { // 出现NullPointerException
         String type = null;
 
-        switch (type) {
-            case "1":
-                System.out.println(type);
-                break;
-            default:
-                System.out.println("null");
+        try {
+            switch (type) {
+                case "1":
+                    System.out.println(type);
+                    break;
+                default:
+                    System.out.println("null");
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
+
+        String str = "hello ";
+        switch (1) {
+            default:
+                str += "world";
+            case 1:
+                str += "1 !!!";
+                System.out.println(str);
+                break;
+            case 2:
+                str += "2 !!!";
+                System.out.println(str);
+                break;
+        }
+
+
     }
 
     @Test
@@ -406,4 +438,130 @@ public class TestString {
         System.out.println(String.format("str1：%d | str2：%d",  str1.hashCode(),str2.hashCode()));
         System.out.println(str1.equals(str2));
     }
+
+    @Test
+    public void testH24MM(){
+        String time = "2020-11-10 21:10";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        try {
+            System.out.println(format.parse(time));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        Date currentTime = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(currentTime);
+        System.out.println(dateString);
+
+    }
+
+
+    @Test
+    public void testSplitStr(){
+        String str = " 1,3,3";
+        String[] arr = str.split(",");
+        System.out.println("==>"+ arr.length);
+
+        List<Long> ids = Arrays.stream(arr).distinct()
+                .map(s ->Long.parseLong(s.trim())).collect(Collectors.toList());
+        System.out.println(JSON.toJSONString(ids));
+    }
+
+    @Test
+    public void testMd5(){
+//        String str = "111111";
+//        String key = "72aaa27d";
+
+        String str = "111111";
+        String key = "9ed515e5";
+
+        String md5 = MD5Util.MD5(MD5Util.MD5(str) + key);
+        System.out.println(md5);
+    }
+
+
+    public static String addZeroForNum(String str, int strLength) {
+        int strLen = str.length();
+        if (strLen < strLength) {
+            while (strLen < strLength) {
+                StringBuffer sb = new StringBuffer();
+                sb.append("0").append(str);// 左补0
+                // sb.append(str).append("0");//右补0
+                str = sb.toString();
+                strLen = str.length();
+            }
+        }
+        return str;
+    }
+
+    @Test
+    public void testStringFormat(){
+        String str = String.format("%02x", 1000);
+        System.out.println(str);
+
+        //获取系统信息
+        String systemType = System.getProperty("os.name");
+        System.out.println(systemType);
+
+        String path = System.getProperty("user.dir");
+        System.out.println(path);
+
+        String str1 = String
+                .format("A3%02X-%08X-%08X-%08X-%08X", 255, 999999999, 999999999, 999999999, 999999999);
+        System.out.println(str1);
+
+        Integer a = Integer.valueOf("11111111", 2);
+        System.out.println(a);
+
+        Integer b = Integer.parseInt("11111111", 2);
+        System.out.println(b);
+
+        String license = "669100ED-7415-A308-000001-000001-BB03789128F6";
+        String[] detail = license.split("-");
+        String ver = detail[2].substring(0, 2);
+        switch (ver) {
+            case "A3":
+                String strMoulds = detail[2].substring(2, 4);
+                String str2 = Integer.toBinaryString(Integer.parseInt(strMoulds, 16));
+
+                String strModules = addZeroForNum(str2, 8);
+                System.out.println(strModules);
+
+                for (int i = 0; i < strModules.length(); i++) {
+                    char ch = strModules.charAt(i);
+                    if(ch == '0'){
+
+                    }
+                }
+                break;
+            default:
+        }
+
+    }
+
+    @Test
+    public void testJson(){
+        String license = "341BBD0E-0D9D-A102-3B9AC9FF3B9AC9FF-3B9AC9FF3B9AC9FF-B9DDD89CA1F0";
+        String[] detail = license.split("-");
+        if (detail[3].length() != 16 || detail[4].length() != 16) {
+
+        }
+        // DEVICE->MOULD->CLAMP->SPARE
+        String deviceHexadecimal = detail[3].substring(0, 8);
+        BigInteger device = new BigInteger(deviceHexadecimal, 16);
+
+        String mouldHexadecimal = detail[3].substring(8, 16);
+        BigInteger mould = new BigInteger(deviceHexadecimal, 16);
+        System.out.println(mould.intValue());
+
+        String clampHexadecimal = detail[4].substring(0, 8);
+        BigInteger clamp = new BigInteger(deviceHexadecimal, 16);
+        System.out.println(clamp.intValue());
+
+        String spareHexadecimal = detail[4].substring(8, 16);
+        BigInteger spare = new BigInteger(deviceHexadecimal, 16);
+        System.out.println(spare.intValue());
+    }
+
 }

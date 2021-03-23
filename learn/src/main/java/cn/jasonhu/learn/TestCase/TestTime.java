@@ -3,7 +3,9 @@ package cn.jasonhu.learn.TestCase;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -232,5 +234,25 @@ public class TestTime {
 
         System.out.println(new Date());
         System.out.println(getPreviousNHour(new Date(), -12));
+
+        try {
+            String str = "2020-12-25T13:31:13";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(" yyyy-MM-dd'T'HH:mm:ss");
+            Date parse = simpleDateFormat.parse(str);
+            System.out.println(parse.toString());
+        }catch (Exception e){
+
+        }
+    }
+
+    @Test
+    public void testTime1() {
+        Period period = Period.between(LocalDate.now(), LocalDate.now());
+
+        StringBuffer sb = new StringBuffer();
+        sb.append(period.getYears()).append(",")
+                .append(period.getMonths()).append(",")
+                .append(period.getDays());
+        System.out.println(sb.toString());
     }
 }

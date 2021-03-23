@@ -1,4 +1,4 @@
-package cn.jasonhu.learn.TestCase.Utils;
+package cn.jasonhu.commons.Utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
