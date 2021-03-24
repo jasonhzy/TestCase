@@ -3,7 +3,7 @@ package cn.jasonhu.commons.entity;
 import lombok.Data;
 
 @Data
-public class User {
+public class Student {
 
     private Integer id;
 
