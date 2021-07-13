@@ -1,4 +1,4 @@
-package cn.jasonhu.impl.Mapper;
+package cn.jasonhu.impl.mapper;
 
 import cn.jasonhu.commons.entity.Teacher;
 

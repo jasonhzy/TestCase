@@ -34,4 +34,34 @@ public class TestTransController {
     public ReturnResult getStudentList() {
         return ResultRes.success(testTransService.getUserList("student"));
     }
+
+    @GetMapping("/propagation/required")
+    @ApiOperation(value = "测试REQUIRED（默认隔离级别）")
+    public ReturnResult testPropagationRequired() {
+        //testTransService.noTransExceptionRequired();
+        //testTransService.noTransRequiredException();
+        //testTransService.transExcteptionRequired();
+        //testTransService.transRequiredExcteption();
+        //testTransService.transRequiredCatchExcteption();
+
+        //testTransService.noTransExceptionRequiresNew();
+        //testTransService.transRequiredRequiresNewException();
+        //testTransService.transRequiredRequiresNewCatchException();
+        //testTransService.noTransExceptionNested();
+        //testTransService.noTransNestedException();
+        //testTransService.transExcteptionNested();
+        //testTransService.transNestedExcteption();
+        //testTransService.transNestedCatchExcteption();
+        //testTransService.noTransExceptionSupports();
+        //testTransService.noTransSupportsException();
+        //testTransService.transExceptionSupports();
+        //testTransService.transSupportsException();
+
+        //testTransService.noTransExceptionRequiredNotSupported();
+        //testTransService.noTransRequiredNotSupportedException();
+        //testTransService.transExceptionRequiredNotSupported();
+        //testTransService.transRequiredNotSupportedException();
+        testTransService.noTransMandatory();
+        return ResultRes.success();
+    }
 }
