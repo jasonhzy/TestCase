@@ -96,7 +96,7 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 1.5 外围方法开启事务，内部方法加入外围方法事务，内部方法抛出异常回滚，外围方法感知异常致使整体事务回滚。
+     * 1.5 外围方法开启事务，内部方法加入外围方法事务，内部方法抛出异常回滚，即使方法被catch不被外围方法感知，外围方法感知异常致使整体事务回滚。
      */
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
