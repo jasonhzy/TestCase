@@ -13,7 +13,7 @@ public class TestThread4 {
     private static Thread t3 = new Thread(() -> System.out.println("t3 start"));
 
 
-    //设置线程优先级
+    //设置线程优先级--不准确
     @Test
     public void test1(){
         t1.setPriority(Thread.MAX_PRIORITY);

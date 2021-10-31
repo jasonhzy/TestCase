@@ -2,7 +2,6 @@ package cn.jasonhu.learn.controller;
 
 import cn.jasonhu.commons.response.ResultRes;
 import cn.jasonhu.commons.response.ReturnResult;
-import cn.jasonhu.impl.service.TeacherService;
 import cn.jasonhu.impl.service.TestTransService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -12,7 +12,7 @@ public class TestRunnable extends TestCase {
         thread.start();
         System.err.println(thread.isAlive());
         Thread.sleep(1000);
-        taggedRunnnable.cancell();
+        taggedRunnnable.cancel();
         Thread.sleep(1000);
         System.err.println(thread.isAlive());
         Thread.sleep(1000);
