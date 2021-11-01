@@ -1,4 +1,4 @@
-package cn.jasonhu.learn.TestCase;
+package cn.jasonhu.learn.TestCase.algorithm;
 
 import org.junit.Test;
 

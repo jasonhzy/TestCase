@@ -1,7 +1,6 @@
 package cn.jasonhu.learn.controller;
 
-import cn.jasonhu.commons.response.ResultRes;
-import cn.jasonhu.commons.response.ReturnResult;
+import cn.jasonhu.commons.response.ResponseResult;
 import cn.jasonhu.impl.service.TestTransService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,19 +23,19 @@ public class TestTransController {
 
     @GetMapping("/teacher/list")
     @ApiOperation(value = "获取教师列表")
-    public ReturnResult getTeacherList() {
-        return ResultRes.success(testTransService.getUserList("teacher"));
+    public ResponseResult getTeacherList() {
+        return ResponseResult.success(testTransService.getUserList("teacher"));
     }
 
     @GetMapping("/student/list")
     @ApiOperation(value = "获取学生列表")
-    public ReturnResult getStudentList() {
-        return ResultRes.success(testTransService.getUserList("student"));
+    public ResponseResult getStudentList() {
+        return ResponseResult.success(testTransService.getUserList("student"));
     }
 
     @GetMapping("/propagation/required")
     @ApiOperation(value = "测试REQUIRED（默认隔离级别）")
-    public ReturnResult testPropagationRequired() {
+    public ResponseResult testPropagationRequired() {
         //testTransService.noTransExceptionRequired();
         //testTransService.noTransRequiredException();
         //testTransService.transExcteptionRequired();
@@ -61,6 +60,6 @@ public class TestTransController {
         //testTransService.transExceptionRequiredNotSupported();
         //testTransService.transRequiredNotSupportedException();
         testTransService.noTransMandatory();
-        return ResultRes.success();
+        return ResponseResult.success();
     }
 }
