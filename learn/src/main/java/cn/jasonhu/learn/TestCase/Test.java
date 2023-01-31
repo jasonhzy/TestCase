@@ -1,22 +1,28 @@
 package cn.jasonhu.learn.TestCase;
 
 public class Test {
-    public static void main(String [] args){
+
+    public static void main(String[] args) {
         System.out.println(new B().getValue());
     }
-    static class A{
+
+    static class A {
+
         protected int value;
+
         public A(int v) {
             setValue(v);
         }
-        public void setValue(int value){
+
+        public void setValue(int value) {
             this.value = value;
         }
-        public int getValue(){
-            try{
+
+        public int getValue() {
+            try {
                 value++;
                 return value;
-            } catch(Exception e){
+            } catch (Exception e) {
                 System.out.println(e.toString());
             } finally {
                 System.out.println("-------");
@@ -28,7 +34,9 @@ public class Test {
             return value;
         }
     }
-    static class B extends A{
+
+    static class B extends A {
+
         public B() {
             super(5);
             int a = getValue() - 3;
@@ -37,8 +45,9 @@ public class Test {
             System.out.println("======");
             setValue(a);
         }
+
         @Override
-        public void setValue(int value){
+        public void setValue(int value) {
             super.setValue(2 * value);
         }
     }

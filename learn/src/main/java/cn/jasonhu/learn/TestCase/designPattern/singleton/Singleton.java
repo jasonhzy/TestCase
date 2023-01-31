@@ -1,13 +1,15 @@
 package cn.jasonhu.learn.TestCase.designPattern.singleton;
 
 public class Singleton {
+
     private static Singleton instance = null;
 
-    private Singleton(){}
+    private Singleton() {
+    }
 
     //懒汉式，线程不安全
-    public static Singleton getInstance(){
-        if(null == instance){
+    public static Singleton getInstance() {
+        if (null == instance) {
             instance = new Singleton();
         }
         return instance;
@@ -25,7 +27,7 @@ public class Singleton {
     //单例类是否可以继承？
     //1、当子类是父类单例类的内部类时，继承是可以的，如下所示。
     //编译和执行上允许的，但是继承单例没有实际的意义，反而会变得更加事倍功半，其代价要大于新写一个单例类
-    public static class  MySingleton extends Singleton {
+    public static class MySingleton extends Singleton {
 
     }
     //2、如果子类为单独的类，非单例类的内部类的话，那么在编译时就会出错
@@ -35,7 +37,6 @@ public class Singleton {
 
 //参考文档：
 //1、http://www.blogjava.net/kenzhh/archive/2016/05/16/357824.html
-
 
 //真的只有一个对象么？
 //其实，单例模式并不能保证实例的唯一性，只要我们想办法的话，还是可以打破这种唯一性的。以下几种方法都能实现。

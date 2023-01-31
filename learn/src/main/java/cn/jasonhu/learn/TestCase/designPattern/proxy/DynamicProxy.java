@@ -15,11 +15,12 @@ public class DynamicProxy implements InvocationHandler {
 
     /**
      * 获得被代理后的对象
+     *
      * @param object 被代理的对象
      * @return 代理后的对象
      */
-    public Object getProxyObject(Object object){
-        this.targetObject=object;
+    public Object getProxyObject(Object object) {
+        this.targetObject = object;
         return Proxy.newProxyInstance(
                 targetObject.getClass().getClassLoader(), //类加载器
                 targetObject.getClass().getInterfaces(),  //获得被代理对象的所有接口
@@ -31,10 +32,7 @@ public class DynamicProxy implements InvocationHandler {
 
 
     /**
-     * 当用户调用对象中的每个方法时都通过下面的方法执行，方法必须在接口
-     * proxy 被代理后的对象
-     * method 将要被执行的方法信息（反射）
-     * args 执行方法时需要的参数
+     * 当用户调用对象中的每个方法时都通过下面的方法执行，方法必须在接口 proxy 被代理后的对象 method 将要被执行的方法信息（反射） args 执行方法时需要的参数
      */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {

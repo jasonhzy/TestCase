@@ -15,7 +15,7 @@ import org.springframework.transaction.interceptor.TransactionAspectSupport;
  * @author jason hu
  * @since 2021/3/24 9:18
  * <p>
- * 参考地址：https://segmentfault.com/a/1190000013341344
+ * 参考地址：https://segmentfault.com/a/1190000013341344 https://blog.csdn.net/yanxin1213/article/details/100582643
  */
 @Service
 public class TestTransServiceImpl implements TestTransService {
@@ -41,8 +41,7 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 1、Propagation.REQUIRED
-     * 1.1 外围方法未开启事务，内部方法在自己的事务中独立运行，外围方法异常不影响内部方法独立的事务。
+     * 1、Propagation.REQUIRED 1.1 外围方法未开启事务，内部方法在自己的事务中独立运行，外围方法异常不影响内部方法独立的事务。
      */
     @Override
     public void noTransExceptionRequired() {
@@ -116,8 +115,7 @@ public class TestTransServiceImpl implements TestTransService {
 
 
     /**
-     * 2、Propagation.REQUIRES_NEW
-     * 2.1 外围方法未开启事务，内部方法都在自己的事务中独立运行,外围方法抛出异常回滚不会影响内部方法。
+     * 2、Propagation.REQUIRES_NEW 2.1 外围方法未开启事务，内部方法都在自己的事务中独立运行,外围方法抛出异常回滚不会影响内部方法。
      */
     @Override
     public void noTransExceptionRequiresNew() {
@@ -200,8 +198,7 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 3、Propagation.NESTED
-     * 3.1 外围方法未开启事务，内部方法在自己的事务中独立运行，外围方法异常不影响内部方法独立的事务。
+     * 3、Propagation.NESTED 3.1 外围方法未开启事务，内部方法在自己的事务中独立运行，外围方法异常不影响内部方法独立的事务。
      */
     @Override
     public void noTransExceptionNested() {
@@ -272,9 +269,8 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 4、Propagation.SUPPORTS
-     * 4.1 外围方法未开启事务，插入“教师41”、“学生41”方法也均未开启事务，因为不存在事务所以无论外围方法或者内部方法抛出异常都不会回滚。
-     *      均插入成功
+     * 4、Propagation.SUPPORTS 4.1 外围方法未开启事务，插入“教师41”、“学生41”方法也均未开启事务，因为不存在事务所以无论外围方法或者内部方法抛出异常都不会回滚。
+     * 均插入成功
      */
     @Override
     public void noTransExceptionSupports() {
@@ -288,8 +284,7 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 4.2 外围方法未开启事务，插入“教师42”、“学生42”方法也均未开启事务，因为不存在事务所以无论外围方法或者内部方法抛出异常都不会回滚。
-     *      均插入成功
+     * 4.2 外围方法未开启事务，插入“教师42”、“学生42”方法也均未开启事务，因为不存在事务所以无论外围方法或者内部方法抛出异常都不会回滚。 均插入成功
      */
     @Override
     public void noTransSupportsException() {
@@ -301,9 +296,8 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 4.3 外围方法开启事务，插入“教师43”、“学生43”方法都在外围方法的事务中运行，加入外围方法事务，所以三个方法同一个事务。外
-     *      围方法或内部方法抛出异常，整个事务全部回滚。
-     *      均未插入成功
+     * 4.3 外围方法开启事务，插入“教师43”、“学生43”方法都在外围方法的事务中运行，加入外围方法事务，所以三个方法同一个事务。外 围方法或内部方法抛出异常，整个事务全部回滚。
+     * 均未插入成功
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -318,9 +312,7 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 4.4 外围方法开启事务，插入“张三”、“李四”方法都在外围方法的事务中运行，加入外围方法事务，所以三个方法同一个事务。
-     *  外围方法或内部方法抛出异常，整个事务全部回滚。
-     *  均未插入成功
+     * 4.4 外围方法开启事务，插入“张三”、“李四”方法都在外围方法的事务中运行，加入外围方法事务，所以三个方法同一个事务。 外围方法或内部方法抛出异常，整个事务全部回滚。 均未插入成功
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -334,10 +326,8 @@ public class TestTransServiceImpl implements TestTransService {
 
 
     /**
-     * 5、Propagation.NOT_SUPPORTED
-     * 5.1 外围方法未开启事务，插入“教师51”方法在自己的事务中运行，插入“学生51”方法不在任何事务中运行。外围方法抛出异常，
-     *      但是外围方法没有事务，所以其他内部事务方法不会被回滚，非事务方法更不会被回滚。
-     *      均插入成功
+     * 5、Propagation.NOT_SUPPORTED 5.1 外围方法未开启事务，插入“教师51”方法在自己的事务中运行，插入“学生51”方法不在任何事务中运行。外围方法抛出异常，
+     * 但是外围方法没有事务，所以其他内部事务方法不会被回滚，非事务方法更不会被回滚。 均插入成功
      */
     @Override
     public void noTransExceptionRequiredNotSupported() {
@@ -351,10 +341,8 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 4.2 外围方法未开启事务，插入“教师52”方法在自己的事务中运行，插入“学生52”方法不在任何事务中运行。
-     * 	 插入“学生52”方法抛出异常，首先因为插入“学生52”方法没有开启事务，所以“学生52”方法不会回滚，外围方法感知异常，
-     * 	 但是因为外围方法没有事务，所以外围方法也不会回滚。
-     * 	 均插入成功
+     * 4.2 外围方法未开启事务，插入“教师52”方法在自己的事务中运行，插入“学生52”方法不在任何事务中运行。 插入“学生52”方法抛出异常，首先因为插入“学生52”方法没有开启事务，所以“学生52”方法不会回滚，外围方法感知异常，
+     * 但是因为外围方法没有事务，所以外围方法也不会回滚。 均插入成功
      */
     @Override
     public void noTransRequiredNotSupportedException() {
@@ -367,8 +355,7 @@ public class TestTransServiceImpl implements TestTransService {
 
     /**
      * 4.3 外围方法开启事务，因为插入“教师53”方法传播为required，所以和外围方法同一个事务。插入“学生53”方法不在任何事务中运行。
-     * 	 外围方法抛出异常，外围方法所在的事务将会回滚，因为插入“教师53”方法和外围方法同一个事务，所以将会回滚。
-     * 	 “教师53”插入失败，“学生53”插入成功
+     * 外围方法抛出异常，外围方法所在的事务将会回滚，因为插入“教师53”方法和外围方法同一个事务，所以将会回滚。 “教师53”插入失败，“学生53”插入成功
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -384,9 +371,8 @@ public class TestTransServiceImpl implements TestTransService {
 
     /**
      * 4.4  外围方法开启事务，因为插入“教师54”方法传播为required，所以和外围方法同一个事务。插入“学生54”方法不在任何事务中运行。
-     * 	 插入“学生54”方法抛出异常，因为此方法不开启事务，所以此方法不会被回滚，外围方法接收到了异常，所以外围事务需要回滚，因插入“教师54”
-     * 	 方法和外围方法同一事务，故被回滚。
-     * 	 “教师54”未插入，“学生54”插入
+     * 插入“学生54”方法抛出异常，因为此方法不开启事务，所以此方法不会被回滚，外围方法接收到了异常，所以外围事务需要回滚，因插入“教师54” 方法和外围方法同一事务，故被回滚。
+     * “教师54”未插入，“学生54”插入
      */
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
@@ -399,8 +385,7 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 6、Propagation.MANDATORY
-     * 6.1 外围方法未开启事务。内部插入“学生61”方法执行的时候因外围没有事务而直接抛出异常，具体插入方法都没有机会执行。
+     * 6、Propagation.MANDATORY 6.1 外围方法未开启事务。内部插入“学生61”方法执行的时候因外围没有事务而直接抛出异常，具体插入方法都没有机会执行。
      * “教师61”未插入
      */
     @Override
@@ -411,8 +396,7 @@ public class TestTransServiceImpl implements TestTransService {
 
 
     /**
-     * 6.2 外围方法开启事务，插入“教师62”方法和插入“学生62”方法都加入外围方法事务，外围方法抛出异常，事务回滚。
-     * 均未插入
+     * 6.2 外围方法开启事务，插入“教师62”方法和插入“学生62”方法都加入外围方法事务，外围方法抛出异常，事务回滚。 均未插入
      */
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
@@ -428,8 +412,7 @@ public class TestTransServiceImpl implements TestTransService {
 
 
     /**
-     * 6.3 外围方法开启事务，插入“教师63”方法和插入“学生63”方法都加入外围方法事务，内部方法抛出异常，整个事务回滚。
-     * 均未插入
+     * 6.3 外围方法开启事务，插入“教师63”方法和插入“学生63”方法都加入外围方法事务，内部方法抛出异常，整个事务回滚。 均未插入
      */
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
@@ -442,9 +425,7 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 7 Propagation.NEVER
-     * 7.1 外围方法开启事务。内部插入“教师71”方法执行的时候因外围有事务而直接抛出异常，具体插入方法都没有机会执行。
-     *
+     * 7 Propagation.NEVER 7.1 外围方法开启事务。内部插入“教师71”方法执行的时候因外围有事务而直接抛出异常，具体插入方法都没有机会执行。
      */
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     @Override
@@ -454,8 +435,7 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 7.2 外围方法未开启事务，插入“教师72”方法和插入“学生72”方法也均无事务，任何异常都不会回滚。
-     * 均插入
+     * 7.2 外围方法未开启事务，插入“教师72”方法和插入“学生72”方法也均无事务，任何异常都不会回滚。 均插入
      */
     @Override
     public void noTransExceptionNever() {
@@ -469,8 +449,7 @@ public class TestTransServiceImpl implements TestTransService {
     }
 
     /**
-     * 7.3 外围方法未开启事务，插入“教师73”方法和插入“学生73”方法也均无事务，任何异常都不会回滚。
-     * 均插入
+     * 7.3 外围方法未开启事务，插入“教师73”方法和插入“学生73”方法也均无事务，任何异常都不会回滚。 均插入
      */
     @Override
     public void noTransNeverException() {

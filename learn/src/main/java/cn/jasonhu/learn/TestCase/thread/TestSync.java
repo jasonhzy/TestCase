@@ -9,7 +9,7 @@ public class TestSync {
         try {
             Thread.sleep(1000);
             System.out.println();
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         synchronized (this) {

@@ -3,6 +3,7 @@ package cn.jasonhu.learn.TestCase;
 import java.sql.*;
 
 public class Mysql {
+
     public static void main(String[] args) {
         try {
             // 调用Class.forName()方法加载驱动程序

@@ -9,18 +9,19 @@ import java.util.zip.GZIPOutputStream;
 public class TestTryCatch {
 
     /**
-     * try-with-resource (java7引入)
-     * 提供了更优雅的方式来实现资源的自动释放，自动释放的资源需要是实现了 AutoCloseable 接口的类
+     * try-with-resource (java7引入) 提供了更优雅的方式来实现资源的自动释放，自动释放的资源需要是实现了 AutoCloseable 接口的类
      */
     @Test
     public void test1() {
-        try (BufferedInputStream bin = new BufferedInputStream(new FileInputStream(new File("test.txt")));
-             BufferedOutputStream bout = new BufferedOutputStream(new FileOutputStream(new File("out.txt")))) {
+        try (BufferedInputStream bin = new BufferedInputStream(
+                new FileInputStream(new File("test.txt")));
+                BufferedOutputStream bout = new BufferedOutputStream(
+                        new FileOutputStream(new File("out.txt")))) {
             int b;
             while ((b = bin.read()) != -1) {
                 bout.write(b);
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -40,9 +41,10 @@ public class TestTryCatch {
 
 
     @Test
-    public void test3(){
+    public void test3() {
         try (FileInputStream fin = new FileInputStream(new File("input.txt"));
-                GZIPOutputStream out = new GZIPOutputStream(new FileOutputStream(new File("out.txt")))) {
+                GZIPOutputStream out = new GZIPOutputStream(
+                        new FileOutputStream(new File("out.txt")))) {
             byte[] buffer = new byte[4096];
             int read;
             while ((read = fin.read(buffer)) != -1) {
@@ -71,15 +73,14 @@ public class TestTryCatch {
          * 在刚才的例子中，我们需要单独声明每个FileInputStream以及FileOutputStream，例子即：
          */
         try (FileInputStream fin = new FileInputStream(new File("input.txt"));
-             FileOutputStream fout = new FileOutputStream(new File("out.txt"));
-             GZIPOutputStream out = new GZIPOutputStream(fout)) {
+                FileOutputStream fout = new FileOutputStream(new File("out.txt"));
+                GZIPOutputStream out = new GZIPOutputStream(fout)) {
             byte[] buffer = new byte[4096];
             int read;
             while ((read = fin.read(buffer)) != -1) {
                 out.write(buffer, 0, read);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -88,6 +89,7 @@ public class TestTryCatch {
 
 //实现了AutoCloseable 接口的类
 class MyAutoClosable implements AutoCloseable {
+
     public void doIt() {
         System.out.println("MyAutoClosable doing it!");
     }
@@ -98,7 +100,7 @@ class MyAutoClosable implements AutoCloseable {
     }
 
     public static void main(String[] args) {
-        try(MyAutoClosable myAutoClosable = new MyAutoClosable()){
+        try (MyAutoClosable myAutoClosable = new MyAutoClosable()) {
             myAutoClosable.doIt();
         } catch (Exception e) {
             e.printStackTrace();

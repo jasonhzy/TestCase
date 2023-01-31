@@ -15,7 +15,7 @@ public class YesterdayCurrent {
      * 打印昨天的当前时刻
      */
     @Test
-    public void test1(){
+    public void test1() {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -1);
 
@@ -28,7 +28,7 @@ public class YesterdayCurrent {
     }
 
     @Test
-    public void test2(){
+    public void test2() {
         LocalDateTime today = LocalDateTime.now();
         LocalDateTime yesterday = today.minusDays(1);
         System.out.println(yesterday);
@@ -42,7 +42,7 @@ public class YesterdayCurrent {
     }
 
     @Test
-    public void testTime(){
+    public void testTime() {
         System.out.println(System.currentTimeMillis());
     }
 }

@@ -6,6 +6,7 @@ import java.util.Set;
 import org.junit.Test;
 
 public class TestSet {
+
     @Test
     public void test1() {
         Set<StringBuilder> hs = new HashSet<StringBuilder>();

@@ -9,10 +9,8 @@ import java.util.List;
 import java.util.function.*;
 
 /**
- * 函数式接口定义：
- * 1、一个有且仅有一个抽象方法，但是可以有多个非抽象方法的接口。
- * 2、函数式接口可以被隐式转换为 lambda 表达式。（Lambda 表达式和方法引用（实际上也可认为是Lambda表达式）上）
- * 3、在任意函数式接口上使用@FunctionalInterface注解，这样做可以检查它是否是一个函数式接口（即使一个接口没有标注@FunctionalInterface，如果这个接口满足函数式接口规则，依旧被当作函数式接口）
+ * 函数式接口定义： 1、一个有且仅有一个抽象方法，但是可以有多个非抽象方法的接口。 2、函数式接口可以被隐式转换为 lambda 表达式。（Lambda
+ * 表达式和方法引用（实际上也可认为是Lambda表达式）上） 3、在任意函数式接口上使用@FunctionalInterface注解，这样做可以检查它是否是一个函数式接口（即使一个接口没有标注@FunctionalInterface，如果这个接口满足函数式接口规则，依旧被当作函数式接口）
  */
 public class FunInterfaceClass {
 
@@ -103,8 +101,9 @@ public class FunInterfaceClass {
         }
         return retList;
     }
+
     @Test
-    public void test5(){
+    public void test5() {
         List<Employee> employees = Arrays.asList(new Employee("老张"),
                 new Employee("小李", 3000.00),
                 new Employee("老王", 5000.00),
@@ -151,13 +150,16 @@ public class FunInterfaceClass {
 
 @Data
 class Employee {
+
     private int id;
     private String name;
     private double salary;
-    public Employee(String name){
+
+    public Employee(String name) {
         this.name = name;
     }
-    public Employee(String name,double salary) {
+
+    public Employee(String name, double salary) {
         this.name = name;
         this.salary = salary;
     }

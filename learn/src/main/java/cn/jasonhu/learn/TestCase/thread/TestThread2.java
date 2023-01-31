@@ -13,6 +13,7 @@ package cn.jasonhu.learn.TestCase.thread;
 
 
 public class TestThread2 {
+
     public static void main(String[] args) {
         new Thread(new Thread1()).start();
         try {
@@ -24,6 +25,7 @@ public class TestThread2 {
     }
 
     private static class Thread1 implements Runnable {
+
         @Override
         public void run() {
             synchronized (TestThread2.class) {
@@ -42,6 +44,7 @@ public class TestThread2 {
     }
 
     private static class Thread2 implements Runnable {
+
         @Override
         public void run() {
             synchronized (TestThread2.class) {

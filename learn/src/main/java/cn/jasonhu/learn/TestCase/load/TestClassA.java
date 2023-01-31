@@ -1,20 +1,26 @@
 package cn.jasonhu.learn.TestCase.load;
 
 public class TestClassA {
+
     static int count = 0;
+
     static {
         count++;
         System.out.println("A");
     }
+
     public TestClassA() {
         System.out.println("B");
     }
 }
+
 class ClassB {
+
     static {
         TestClassA t2;
         System.out.println("C");
     }
+
     public static void main(String[] args) {
         Class c1;
         Class c2;
@@ -28,7 +34,7 @@ class ClassB {
             e.printStackTrace();
             return;
         }
-        if (c2 == c1&& c1 == c3) {
+        if (c2 == c1 && c1 == c3) {
             System.out.println("D");
         } else {
             System.out.println("E");

@@ -1,4 +1,5 @@
 package cn.jasonhu.learn.TestCase.thread;
+
 /**
  * 题目：建立三个线程，A线程打印10次A，B线程打印10次B,C线程打印10次C，要求线程同时运行，交替打印10次ABC
  */
@@ -21,7 +22,7 @@ public class TestThread3 implements Runnable {
             synchronized (prev) {
                 synchronized (self) {
                     System.out.print(name);
-                    if("C".equals(name)){
+                    if ("C".equals(name)) {
                         System.out.println();
                     }
                     count--;

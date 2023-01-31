@@ -4,6 +4,7 @@ package cn.jasonhu.learn.TestCase.designPattern.proxy;
  * 被代理的目标对象 真实主题
  */
 public class Math implements IMath {
+
     // 加
     @Override
     public int add(int n1, int n2) {

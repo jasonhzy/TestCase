@@ -2,9 +2,11 @@ package cn.jasonhu.learn.TestCase.designPattern.singleton;
 
 public class Singleton3 {
 
-    private Singleton3(){}
+    private Singleton3() {
+    }
 
     private static class SingletonHandler {
+
         private static final Singleton3 instance = new Singleton3();
     }
 

@@ -9,7 +9,8 @@ public enum Singleton4 {
     }
 }
 
-class TestSingleton{
+class TestSingleton {
+
     public static void main(String[] args) {
         Singleton4.INSTANCE.print();
     }

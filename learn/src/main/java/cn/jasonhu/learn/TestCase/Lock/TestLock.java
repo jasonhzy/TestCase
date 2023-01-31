@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class TestLock {
 
-    private Lock lock =new ReentrantLock();
+    private Lock lock = new ReentrantLock();
 
     private Condition c1 = lock.newCondition();
     private Condition c2 = lock.newCondition();

@@ -25,11 +25,13 @@ public class TestString {
         String s3 = "Program";
         String s4 = "ming";
         String s5 = "Program" + "ming";
-        String s6 = s3 + s4; // jad 反编译结果即：String s6 = (new StringBuilder()).append(s3).append(s4).toString();
+        String s6 = s3
+                + s4; // jad 反编译结果即：String s6 = (new StringBuilder()).append(s3).append(s4).toString();
         String s7 = new String("Programming");
         String s8 = s3.concat(s4);
         String s9 = s1.concat("");
-        String s10 = "Program" + new String("ming"); //jad 反编译结果即：String s10 = (new StringBuilder()).append("Program").append(new String("ming")).toString();
+        String s10 = "Program" + new String(
+                "ming"); //jad 反编译结果即：String s10 = (new StringBuilder()).append("Program").append(new String("ming")).toString();
         System.out.println(s1 == s2); // false
         System.out.println(s2 == s2.intern()); // false
 
@@ -158,7 +160,7 @@ public class TestString {
 
     /**
      * 编写一个程序来打印String的所有排列？
-     *
+     * <p>
      * 排列是有序的字符列表的元素的重新排列，使得每个排列相对于其他排列是唯一的。 例如下面是字符串“ABC”的排列 – ABC ACB BAC BCA CBA CAB。
      */
     public static Set<String> getPermutations(String string) {
@@ -280,7 +282,7 @@ public class TestString {
                 default:
                     System.out.println("null");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -303,8 +305,9 @@ public class TestString {
 
     @Test
     public void testList() {
-        List<String> ACTIVITY_DAYS = Arrays.asList("2020-02-27", "2020-02-28", "2020-02-29", "2020-03-01", "2020-03-02",
-                "2020-03-03", "2020-03-06", "2020-03-07", "2020-03-08", "2020-03-09");
+        List<String> ACTIVITY_DAYS = Arrays
+                .asList("2020-02-27", "2020-02-28", "2020-02-29", "2020-03-01", "2020-03-02",
+                        "2020-03-03", "2020-03-06", "2020-03-07", "2020-03-08", "2020-03-09");
 
         System.out.println(ACTIVITY_DAYS.contains("2020-03-08"));
 
@@ -432,15 +435,15 @@ public class TestString {
     }
 
     @Test
-    public void testHashcode(){
+    public void testHashcode() {
         String str1 = "通话";
         String str2 = "重地";
-        System.out.println(String.format("str1：%d | str2：%d",  str1.hashCode(),str2.hashCode()));
+        System.out.println(String.format("str1：%d | str2：%d", str1.hashCode(), str2.hashCode()));
         System.out.println(str1.equals(str2));
     }
 
     @Test
-    public void testH24MM(){
+    public void testH24MM() {
         String time = "2020-11-10 21:10";
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
@@ -458,18 +461,18 @@ public class TestString {
 
 
     @Test
-    public void testSplitStr(){
+    public void testSplitStr() {
         String str = " 1,3,3";
         String[] arr = str.split(",");
-        System.out.println("==>"+ arr.length);
+        System.out.println("==>" + arr.length);
 
         List<Long> ids = Arrays.stream(arr).distinct()
-                .map(s ->Long.parseLong(s.trim())).collect(Collectors.toList());
+                .map(s -> Long.parseLong(s.trim())).collect(Collectors.toList());
         System.out.println(JSON.toJSONString(ids));
     }
 
     @Test
-    public void testMd5(){
+    public void testMd5() {
 //        String str = "111111";
 //        String key = "72aaa27d";
 
@@ -496,7 +499,7 @@ public class TestString {
     }
 
     @Test
-    public void testStringFormat(){
+    public void testStringFormat() {
         String str = String.format("%02x", 1000);
         System.out.println(str);
 
@@ -508,7 +511,8 @@ public class TestString {
         System.out.println(path);
 
         String str1 = String
-                .format("A3%02X-%08X-%08X-%08X-%08X", 255, 999999999, 999999999, 999999999, 999999999);
+                .format("A3%02X-%08X-%08X-%08X-%08X", 255, 999999999, 999999999, 999999999,
+                        999999999);
         System.out.println(str1);
 
         Integer a = Integer.valueOf("11111111", 2);
@@ -530,7 +534,7 @@ public class TestString {
 
                 for (int i = 0; i < strModules.length(); i++) {
                     char ch = strModules.charAt(i);
-                    if(ch == '0'){
+                    if (ch == '0') {
 
                     }
                 }
@@ -541,7 +545,7 @@ public class TestString {
     }
 
     @Test
-    public void testJson(){
+    public void testJson() {
         String license = "341BBD0E-0D9D-A102-3B9AC9FF3B9AC9FF-3B9AC9FF3B9AC9FF-B9DDD89CA1F0";
         String[] detail = license.split("-");
         if (detail[3].length() != 16 || detail[4].length() != 16) {

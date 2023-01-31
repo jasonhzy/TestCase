@@ -56,10 +56,11 @@ public class TestRegex {
         pri = pri.replaceAll("'('.+')", "\"$1").replaceAll("('.+')'", "$1\"");
         System.out.println(pri);
     }
+
     @Test
-    public void test4(){
+    public void test4() {
         String phone = "15962143194";
-        String phoneNumber = phone.replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2");
+        String phoneNumber = phone.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
         System.out.println("正则phone中4*：" + phoneNumber);
 
         System.out.println();

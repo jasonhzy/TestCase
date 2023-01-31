@@ -65,16 +65,10 @@ public class TestInteger {
     }
 
     /**
-     * 1、自动装箱和拆箱的原理:
-     * 自动装箱时编译器调用valueOf将原始类型值转换成对象，同时自动拆箱时，
-     * 编译器通过调用类似intValue(),doubleValue()这类的方法将对象转换成原始类型值。
-     * 2、只有double和float的自动装箱代码没有使用缓存，每次都是new新的对象，其它的6种基本类型都使用了缓存策略。
-     * 3、有如下几种情况时，编译器会自动帮我们进行装箱或拆箱：
-     *    a. 进行 = 赋值操作（装箱或拆箱）
-     *    b. 进行+，-，*，/混合运算 （拆箱）
-     *    c. 进行>,<,==比较运算（拆箱）
-     *    d. 调用equals进行比较（装箱）
-     *    e. ArrayList,HashMap等集合类添加基础类型数据时（装箱）
+     * 1、自动装箱和拆箱的原理: 自动装箱时编译器调用valueOf将原始类型值转换成对象，同时自动拆箱时， 编译器通过调用类似intValue(),doubleValue()这类的方法将对象转换成原始类型值。
+     * 2、只有double和float的自动装箱代码没有使用缓存，每次都是new新的对象，其它的6种基本类型都使用了缓存策略。 3、有如下几种情况时，编译器会自动帮我们进行装箱或拆箱： a.
+     * 进行 = 赋值操作（装箱或拆箱） b. 进行+，-，*，/混合运算 （拆箱） c. 进行>,<,==比较运算（拆箱） d. 调用equals进行比较（装箱） e.
+     * ArrayList,HashMap等集合类添加基础类型数据时（装箱）
      */
     @Test
     public void test7() {
@@ -109,12 +103,10 @@ public class TestInteger {
 
     /**
      * 自动装箱有一个问题，那就是在一个循环中进行自动装箱操作的情况，如下面的例子就会创建多余的对象，影响程序的性能。举例说明如下：
-     *
+     * <p>
      * 下面的代码sum+=i可以看成sum = sum + i，但是+这个操作符不适用于Integer对象，首先sum进行自动拆箱操作，进行数值相加操作，
-     * 最后发生自动装箱操作转换成Integer对象。其内部变化如下：
-     * int result = sum.intValue() + i;
-     * Integer sum = new Integer(result);
-     * 由于我们这里声明的sum为Integer类型，在上面的循环中会创建将近4000个无用的Integer对象，在这样庞大的循环中，会降低程序的性能
+     * 最后发生自动装箱操作转换成Integer对象。其内部变化如下： int result = sum.intValue() + i; Integer sum = new
+     * Integer(result); 由于我们这里声明的sum为Integer类型，在上面的循环中会创建将近4000个无用的Integer对象，在这样庞大的循环中，会降低程序的性能
      * 并且加重了垃圾回收的工作量。因此在我们编程时，需要注意到这一点，正确地声明变量类型，避免因为自动装箱引起的性能问题。
      */
     @Test
@@ -126,9 +118,8 @@ public class TestInteger {
     }
 
     /**
-     * intValue()是把Integer对象类型变成int的基础数据类型；
-     * parseInt()是把String 变成int的基础数据类型；
-     * Valueof()是把String 转化成Integer对象类型；（现在JDK版本支持自动装箱拆箱了。）
+     * intValue()是把Integer对象类型变成int的基础数据类型； parseInt()是把String 变成int的基础数据类型； Valueof()是把String
+     * 转化成Integer对象类型；（现在JDK版本支持自动装箱拆箱了。）
      */
     @Test
     public void testFunc() {
@@ -151,7 +142,7 @@ public class TestInteger {
     }
 
     @Test
-    public void testMapSize(){
+    public void testMapSize() {
         int cap = 10000;
         int n = cap - 1;
         System.out.println(Integer.toBinaryString(n));
@@ -173,6 +164,7 @@ public class TestInteger {
 
 
 class Demo {
+
     int a;
 
     public Demo(int a) {
@@ -182,6 +174,7 @@ class Demo {
 
 
 class TestQuote {
+
     public static void main(String args[]) {
         Demo d1 = new Demo(1);
         Demo d2 = new Demo(2);

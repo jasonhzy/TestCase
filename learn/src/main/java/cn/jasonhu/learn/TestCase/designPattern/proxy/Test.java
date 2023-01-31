@@ -4,7 +4,8 @@ public class Test {
 
     // 实例化一个MathProxy代理对象
     // 通过getProxyObject方法获得被代理后的对象
-    IMath math = (IMath) new DynamicProxy().getProxyObject(new cn.jasonhu.learn.TestCase.designPattern.proxy.Math());
+    IMath math = (IMath) new DynamicProxy()
+            .getProxyObject(new cn.jasonhu.learn.TestCase.designPattern.proxy.Math());
 
     @org.junit.Test
     public void test01() {

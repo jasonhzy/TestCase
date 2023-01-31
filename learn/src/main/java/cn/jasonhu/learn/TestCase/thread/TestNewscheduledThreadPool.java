@@ -11,7 +11,8 @@ public class TestNewscheduledThreadPool {
         scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
-                System.out.println(Thread.currentThread().getName() + ": delay 1 seconds, and excute every 3 seconds, "
+                System.out.println(Thread.currentThread().getName()
+                        + ": delay 1 seconds, and excute every 3 seconds, "
                         + System.currentTimeMillis());
             }
         }, 1, 3, TimeUnit.SECONDS);

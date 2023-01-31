@@ -34,7 +34,7 @@ public class TestMath {
     }
 
     @Test
-    public void testOperators(){
+    public void testOperators() {
         System.out.println(1 << 30);
     }
 }

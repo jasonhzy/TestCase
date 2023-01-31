@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class PrizeUtil {
+
     /**
      * 根据Math.random()产生一个double型的随机数，判断每个奖品出现的概率
-     * 
+     *
      * @param prizes
      * @return random：奖品列表prizes中的序列（prizes中的第random个就是抽中的奖品）
      */
@@ -34,7 +35,8 @@ public class PrizeUtil {
                 if (i == 0) {
                     d1 = 0;
                 } else {
-                    d1 += Double.parseDouble(String.valueOf(prizes.get(i - 1).getWeight())) / sumWeight;
+                    d1 += Double.parseDouble(String.valueOf(prizes.get(i - 1).getWeight()))
+                            / sumWeight;
                 }
                 if (randomNumber >= d1 && randomNumber < d2) {
                     random = i;

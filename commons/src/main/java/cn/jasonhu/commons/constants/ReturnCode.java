@@ -9,8 +9,7 @@ public enum ReturnCode {
     // 成功
     SUCCESS(0),
     // 失败
-    FAIL(-1)
-    ;
+    FAIL(-1);
 
     public int code;
 

@@ -6,6 +6,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisSentinelPool;
 
 public class Sentinel {
+
     public static void main(String[] args) throws Exception {
         Set<String> sentinels = new HashSet<String>();
         sentinels.add("123.57.81.91:4141");
