@@ -104,3 +104,4 @@ ApplicationClassLoader:加载当前应用classpath下的jar包或者class文件�
    这个表的Auto_Increment就会变成10. 也就是说,重启之后会修改一个表的Auto_Increment值.
    
 2) 在MySQL8.0版本,将自增值的变更记录存在了redo log中,重启的时候依靠redo log恢复重启之前的值.
+
