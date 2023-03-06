@@ -52,4 +52,11 @@ public class TestSet {
         set.add(str);
         System.out.println(set);
     }
+
+    @Test
+    public void test4() {
+        Set set = new HashSet<String>();
+        set.add(null);
+        System.out.println(set);
+    }
 }

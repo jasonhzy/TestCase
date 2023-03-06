@@ -32,8 +32,10 @@ public class TestLong {
     }
 
     /**
-     * 1、switch 控制表达式支持的类型有byte、short、char、int、enum（Java 5）、String(Java
-     * 7)。不支持boolean、long、float、double 2、必须先进行null的判断 3、String字符串的switch是通过equals()和hashCode()方法来实现的
+     * 1、switch 控制表达式支持的类型有byte、short、char、int、enum（Java 5）、String(Java 7)。
+     *      不支持boolean、long、float、double
+     * 2、必须先进行null的判断
+     * 3、String字符串的switch是通过equals()和hashCode()方法来实现的
      */
     @Test
     public void testSwitch() {
@@ -50,6 +52,28 @@ public class TestLong {
 //                break;
 //        }
 
+        String str = "world";
+        switch (str) {
+            case "hello":
+                System.out.println("hello");
+                break;
+            case "world":
+                System.out.println("world");
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    @Test
+    public void test1() {
+        Short f1 = 100, f2 = 100, f3 = 150, f4 = 150, f5 = -128, f6 = -128, f7 = 127, f8 = 127;
+
+        System.out.println(f1 == f2); // true
+        System.out.println(f3 == f4); // false
+        System.out.println(f5 == f6); // true
+        System.out.println(f7 == f8); // true
     }
 
 }

@@ -1,4 +1,4 @@
-package cn.jasonhu.learn.TestCase.designPattern.proxy;
+package cn.jasonhu.learn.TestCase.designPattern.proxy.jdk;
 
 /**
  * 被代理的目标对象 真实主题

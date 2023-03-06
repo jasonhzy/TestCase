@@ -1,5 +1,6 @@
 package cn.jasonhu.learn.TestCase.thread.waitAndNotify;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -11,10 +12,11 @@ public class Test1 {
 
     static final Object obj = new Object();
 
+
+
     private static boolean flag = false;
 
     public static void main(String[] args) throws Exception {
-
         Thread consume = new Thread(new Consume(), "Consume");
         Thread produce = new Thread(new Produce(), "Produce");
         consume.start();
@@ -27,6 +29,7 @@ public class Test1 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
     }
 
     // 生产者线程

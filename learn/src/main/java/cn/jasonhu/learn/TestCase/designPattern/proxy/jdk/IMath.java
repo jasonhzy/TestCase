@@ -1,4 +1,4 @@
-package cn.jasonhu.learn.TestCase.designPattern.proxy;
+package cn.jasonhu.learn.TestCase.designPattern.proxy.jdk;
 
 /**
  * 接口 抽象主题
