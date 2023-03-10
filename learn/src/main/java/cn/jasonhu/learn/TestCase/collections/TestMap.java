@@ -13,5 +13,6 @@ public class TestMap {
         Map<String, String> a = new HashMap<>();
 
         Map<String, String> b = new ConcurrentHashMap<>();
+        b.put("a", "b");
     }
 }

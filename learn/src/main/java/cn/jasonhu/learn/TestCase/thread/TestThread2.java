@@ -3,12 +3,13 @@ package cn.jasonhu.learn.TestCase.thread;
 //sleep和wait的区别有：
 //1、这两个方法来自不同的类分别是Thread和Object
 //2、最主要是sleep方法没有释放锁,只是停在休眠的位置等待时间到，因此没有让出cpu给其他线程，而wait方法释放了锁，
-//   使得敏感词线程可以使用同步控制块或者方法。
+//   使得其他线程可以使用同步控制块或者方法。
 //3、wait，notify和notifyAll只能在同步控制方法或者同步控制块里面使用，而sleep可以在任何地方使用，例如：
 //    synchronized(x){
 //        x.notify()
 //        //或者wait()
 //    }
+// wait，notify和notifyAll不搭配 synchronized使用,会出现IllegalMonitorStateException和Lost Wake-Up Problem(唤醒丢失的问题)
 //4、sleep必须捕获异常，而wait，notify和notifyAll不需要捕获异常
 
 

@@ -9,7 +9,7 @@ public class TestNewSingleThreadPool {
         ExecutorService singleThreadExecutor = Executors.newSingleThreadScheduledExecutor();
         for (int i = 0; i < 10; i++) {
             final int index = i;
-            singleThreadExecutor.execute(new Runnable() {
+            singleThreadExecutor.submit(new Runnable() {
                 @Override
                 public void run() {
                     try {
