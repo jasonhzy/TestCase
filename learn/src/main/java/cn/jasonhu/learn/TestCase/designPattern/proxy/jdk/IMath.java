@@ -1,9 +1,10 @@
-package cn.jasonhu.learn.TestCase.designPattern.proxy;
+package cn.jasonhu.learn.TestCase.designPattern.proxy.jdk;
 
 /**
  * 接口 抽象主题
  */
 public interface IMath {
+
     // 加
     int add(int n1, int n2);
 

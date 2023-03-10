@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 class Person {
+
     private Integer id;
     private String name;
     private Integer age;
@@ -84,20 +85,24 @@ public class TestJava8Feature {
 
         // 排序：reverseOrder降序。默认升序
         List<Person> sortedList = list.stream()
-                .sorted(Comparator.comparing(Person::getAge, Comparator.reverseOrder()).thenComparing(Person::getId))
+                .sorted(Comparator.comparing(Person::getAge, Comparator.reverseOrder())
+                        .thenComparing(Person::getId))
                 .collect(Collectors.toList());
         System.out.println("sortedList=" + sortedList);
 
         // 转map, (oldValue, newValue) -> oldValue作为第三个参数，解决重复key的问题，即如果key是重复的，选择oldKey or newKey
         Map<Integer, String> map1 = list.stream()
-                .collect(Collectors.toMap(Person::getId, Person::getName, (oldValue, newValue) -> oldValue));
+                .collect(Collectors
+                        .toMap(Person::getId, Person::getName, (oldValue, newValue) -> oldValue));
         Map<Integer, String> map2 = list.stream()
-                .collect(Collectors.toMap(x -> x.getId(), x -> x.getName(), (oldValue, newValue) -> oldValue));
+                .collect(Collectors
+                        .toMap(x -> x.getId(), x -> x.getName(), (oldValue, newValue) -> oldValue));
         System.out.println("map1=" + map1);
         System.out.println("map2=" + map2);
 
         // 过滤
-        List<Person> filterList = list.stream().filter(x -> x.getAge() == 20).collect(Collectors.toList());
+        List<Person> filterList = list.stream().filter(x -> x.getAge() == 20)
+                .collect(Collectors.toList());
         System.out.println("filterList=" + filterList);
 
         // 去重
@@ -126,17 +131,15 @@ public class TestJava8Feature {
 
     /**
      * Optional类, 为了解决返回值为null的问题
-     *
      */
     @Test
-    public void test4(){
+    public void test4() {
         Person p = new Person();
         Optional<Person> p1 = Optional.ofNullable(p);
         p1.ifPresent(person -> {
             System.out.println(person);
         });
     }
-
 
 
 }

@@ -45,7 +45,8 @@ public class ElasticUtil {
                 .maxTotalConnection(2) //设置总连接数为2个
                 .connTimeout(10000) //设置连接超时时间
                 .readTimeout(10000)    //设置读取超时时间
-                .gson(new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create()) //设置 JSON 日期格式
+                .gson(new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss")
+                        .create()) //设置 JSON 日期格式
                 .build());
         client = factory.getObject();
     }
@@ -53,15 +54,15 @@ public class ElasticUtil {
     /**
      * 判断索引目录是否存在
      */
-    public static boolean indicesExists(JestClient client, String index){
-        try{
+    public static boolean indicesExists(JestClient client, String index) {
+        try {
             IndicesExists indicesExists = new IndicesExists.Builder(index).build();
             JestResult result = client.execute(indicesExists);
-            if(result.isSucceeded()){
+            if (result.isSucceeded()) {
                 return true;
             }
             logger.info("confirm index {} : {}", index, result.getErrorMessage());
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("index exist error: {}", e.getMessage());
         }
         return false;

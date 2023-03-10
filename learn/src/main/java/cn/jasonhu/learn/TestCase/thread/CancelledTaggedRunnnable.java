@@ -1,6 +1,7 @@
 package cn.jasonhu.learn.TestCase.thread;
 
 class CancelledTaggedRunnnable implements Runnable {
+
     private volatile boolean cancelled = false;
 
     @Override
@@ -12,7 +13,7 @@ class CancelledTaggedRunnnable implements Runnable {
         System.out.println("任务结束了");
     }
 
-    public void cancell() {
+    public void cancel() {
         cancelled = true;
     }
 }

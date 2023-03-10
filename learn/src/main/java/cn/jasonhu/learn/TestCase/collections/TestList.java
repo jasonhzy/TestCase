@@ -29,7 +29,7 @@ public class TestList {
 
     //数组转换成为List：调用Arrays的asList方法
     @Test
-    public void test2(){
+    public void test2() {
         //推荐方式
         ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(strArr));
         arrayList.add("dd");
@@ -44,7 +44,7 @@ public class TestList {
     }
 
     @Test
-    public void test3(){
+    public void test3() {
         List<String> list = new ArrayList<>();
         list.add("1");
         list.add("2");
@@ -60,9 +60,9 @@ public class TestList {
 
 
     @Test
-    public void test4(){
+    public void test4() {
         List<Integer> ids = Lists.newArrayList();
-        if(CollectionUtils.isNotEmpty(ids)){
+        if (CollectionUtils.isNotEmpty(ids)) {
             System.out.println(true);
         }
     }

@@ -6,6 +6,7 @@ import java.util.Set;
 import org.junit.Test;
 
 public class TestSet {
+
     @Test
     public void test1() {
         Set<StringBuilder> hs = new HashSet<StringBuilder>();
@@ -49,6 +50,13 @@ public class TestSet {
         String str = new String("cn/jasonhu/learn");
         set.add(str);
         set.add(str);
+        System.out.println(set);
+    }
+
+    @Test
+    public void test4() {
+        Set set = new HashSet<String>();
+        set.add(null);
         System.out.println(set);
     }
 }

@@ -1,6 +1,7 @@
 package cn.jasonhu.learn.TestCase.classCast;
 
 class Base {
+
     public void method() {
         System.out.println("Base");
     }
@@ -8,6 +9,7 @@ class Base {
 
 
 class Son extends Base {
+
     @Override
     public void method() {
         System.out.println("Son");
@@ -20,6 +22,7 @@ class Son extends Base {
 
 
 public class TestClass {
+
     public static void main(String[] args) {
         Base base = new Son();
         base.method();

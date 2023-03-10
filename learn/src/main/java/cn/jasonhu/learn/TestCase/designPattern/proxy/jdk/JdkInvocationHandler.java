@@ -1,4 +1,4 @@
-package cn.jasonhu.learn.TestCase.designPattern.proxy;
+package cn.jasonhu.learn.TestCase.designPattern.proxy.jdk;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -6,20 +6,24 @@ import java.lang.reflect.Proxy;
 import java.util.Random;
 
 /**
- * 动态代理类
+ * JDK 动态代理类使用步骤
+ * 1、定义一个接口及其实现类；
+ * 2、自定义 InvocationHandler 并重写invoke方法，在 invoke 方法中我们会调用原生方法（被代理类的方法）并自定义一些处理逻辑；
+ * 3、通过 Proxy.newProxyInstance(ClassLoader loader,Class<?>[] interfaces,InvocationHandler h) 方法创建代理对象；
  */
-public class DynamicProxy implements InvocationHandler {
+public class JdkInvocationHandler implements InvocationHandler {
 
     //被代理的对象
     Object targetObject;
 
     /**
      * 获得被代理后的对象
+     *
      * @param object 被代理的对象
      * @return 代理后的对象
      */
-    public Object getProxyObject(Object object){
-        this.targetObject=object;
+    public Object getProxyObject(Object object) {
+        this.targetObject = object;
         return Proxy.newProxyInstance(
                 targetObject.getClass().getClassLoader(), //类加载器
                 targetObject.getClass().getInterfaces(),  //获得被代理对象的所有接口
@@ -31,10 +35,7 @@ public class DynamicProxy implements InvocationHandler {
 
 
     /**
-     * 当用户调用对象中的每个方法时都通过下面的方法执行，方法必须在接口
-     * proxy 被代理后的对象
-     * method 将要被执行的方法信息（反射）
-     * args 执行方法时需要的参数
+     * 当用户调用对象中的每个方法时都通过下面的方法执行，方法必须在接口 proxy 被代理后的对象 method 将要被执行的方法信息（反射） args 执行方法时需要的参数
      */
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {

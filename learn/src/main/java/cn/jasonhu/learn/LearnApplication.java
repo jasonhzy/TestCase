@@ -9,15 +9,19 @@ import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRe
 import org.springframework.boot.autoconfigure.elasticsearch.jest.JestAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-@SpringBootApplication(exclude={ElasticsearchAutoConfiguration.class,ElasticsearchDataAutoConfiguration.class,
-        ElasticsearchRepositoriesAutoConfiguration.class, JestAutoConfiguration.class, DataSourceAutoConfiguration.class})
-@ComponentScan(basePackages = { "cn.jasonhu.learn", "cn.jasonhu.jdbc", "cn.jasonhu.impl"})
+@SpringBootApplication(exclude = {ElasticsearchAutoConfiguration.class,
+        ElasticsearchDataAutoConfiguration.class,
+        ElasticsearchRepositoriesAutoConfiguration.class, JestAutoConfiguration.class,
+        DataSourceAutoConfiguration.class})
+@ComponentScan(basePackages = {"cn.jasonhu.learn", "cn.jasonhu.jdbc", "cn.jasonhu.impl"})
 @MapperScan({"cn.jasonhu.impl.mapper"})
+@EnableScheduling
 public class LearnApplication {
 
     public static void main(String[] args) {
-        SpringApplication application =  new SpringApplication(LearnApplication.class);
+        SpringApplication application = new SpringApplication(LearnApplication.class);
         application.run(args);
     }
 }

@@ -1,6 +1,7 @@
 package cn.jasonhu.learn.TestCase.activity;
 
 public class Prize {
+
     private int id; // 奖品id
     private String name; // 奖品名称
     private int amount; // 奖品（剩余）数量

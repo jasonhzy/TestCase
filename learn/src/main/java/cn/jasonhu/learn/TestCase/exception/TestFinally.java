@@ -8,8 +8,8 @@ import java.util.Map;
 /**
  * 1、finally语句是在return语句执行之后，return返回之前执行的
  * 2、finally块中的return语句会覆盖try块中的return返回
- * 4、当发生异常后，catch中的return执行情况与未发生异常时try中return的执行情况完全一样
- * 5、a.如果finally中有return语句，则会将try中的return语句“覆盖”掉，直接执行finally中的return语句，
+ * 3、当发生异常后，catch中的return执行情况与未发生异常时try中return的执行情况完全一样
+ * 4、a.如果finally中有return语句，则会将try中的return语句“覆盖”掉，直接执行finally中的return语句，
  *      得到返回值，这样便无法得到try之前保留好的返回值。
  *    b.如果finally中没有return语句，也没有改变要返回值，则执行完finally中的语句后，会接着执行try中的
  *      return语句，返回之前保留的值。
@@ -43,40 +43,36 @@ public class TestFinally {
     public void test10() {
         System.out.println(test1());
     }
+
     /**
      * 运行结果：
-         try block
-         return statement
-         finally block
-         after return
+     * try block
+     * return statement
+     * finally block
+     * after return
      */
 
     public static int test2() {
         int b = 20;
-
         try {
             System.out.println("try block");
-
             return b += 80;
         } catch (Exception e) {
-
             System.out.println("catch block");
         } finally {
             System.out.println("finally block");
-
             if (b > 25) {
                 System.out.println("b>25, b = " + b);
             }
-
             return 200;
         }
     }
     /**
      * 运行结果：
-         try block
-         finally block
-         b>25, b = 100
-         200
+     * try block
+     * finally block
+     * b>25, b = 100
+     * 200
      */
 
     @Test
@@ -87,25 +83,18 @@ public class TestFinally {
 
     public static int test3() {
         int b = 20;
-
         try {
             System.out.println("try block");
-
             return b += 80;
         } catch (Exception e) {
-
             System.out.println("catch block");
         } finally {
-
             System.out.println("finally block");
-
             if (b > 25) {
                 System.out.println("b>25, b = " + b);
             }
-
             b = 150;
         }
-
         return 2000;
     }
 
@@ -117,8 +106,8 @@ public class TestFinally {
     /**
      * 运行结果：
      * try block
-     * finally block
-     * b>25, b = 100
+     * finally
+     * block b>25, b = 100
      * 100
      */
 
@@ -146,7 +135,6 @@ public class TestFinally {
 
     public static int test4() {
         int b = 20;
-
         try {
             System.out.println("try block");
             b = b / 0;
@@ -168,29 +156,25 @@ public class TestFinally {
     public void test40() {
         System.out.println(test4());
     }
+
     /**
-     * 运行结果：
-         try block
-         catch block
-         finally block
-         b>25, b = 35
-         35
+     * 运行结果： try block catch block finally block b>25, b = 35 35
      */
 
 
     public int vaule = 0;
 
-    public  TestFinally test5(){
+    public TestFinally test5() {
         TestFinally t = new TestFinally();
         try {
             t.vaule = 1;
             System.out.println("try block: " + t.vaule);
             return t;
-        }catch (Exception e){
+        } catch (Exception e) {
             t.vaule = -1;
             System.out.println("catch block: " + t.vaule);
             return t;
-        }finally {
+        } finally {
             t.vaule = 3;
             System.out.println("finally block: " + t.vaule);
         }
@@ -202,9 +186,9 @@ public class TestFinally {
     }
     /**
      * 运行结果：
-         try block: 1
-         finally block: 3
-         3
+     try block: 1
+     finally block: 3
+     3
      */
 
 }

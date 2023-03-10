@@ -2,10 +2,9 @@ package cn.jasonhu.learn.TestCase.thread;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestDealLoop
-{
-    static class DeadLoopClass
-    {
+public class TestDealLoop {
+
+    static class DeadLoopClass {
 //        static
 //        {
 //            if(true)
@@ -19,26 +18,21 @@ public class TestDealLoop
 
         static {
             System.out.println(Thread.currentThread() + "init DeadLoopClass");
-            try
-            {
+            try {
                 TimeUnit.SECONDS.sleep(10);
-            }
-            catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void main(String[] args)
-    {
-        Runnable script = new Runnable(){
+    public static void main(String[] args) {
+        Runnable script = new Runnable() {
             @Override
-            public void run()
-            {
-                System.out.println(Thread.currentThread()+" start");
+            public void run() {
+                System.out.println(Thread.currentThread() + " start");
                 DeadLoopClass dlc = new DeadLoopClass();
-                System.out.println(Thread.currentThread()+" run over");
+                System.out.println(Thread.currentThread() + " run over");
             }
         };
 

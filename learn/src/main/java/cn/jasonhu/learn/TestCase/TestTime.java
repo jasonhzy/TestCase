@@ -16,8 +16,9 @@ import com.alibaba.fastjson.JSONObject;
 
 public class TestTime {
 
-    public static List<String> ACTIVITY_DAYS = Arrays.asList("2020-03-05", "2020-03-06", "2020-03-07", "2020-03-08",
-            "2020-03-09");
+    public static List<String> ACTIVITY_DAYS = Arrays
+            .asList("2020-03-05", "2020-03-06", "2020-03-07", "2020-03-08",
+                    "2020-03-09");
 
     private Date getPrevDate(Date date, int n) {
         Calendar calendar = Calendar.getInstance();
@@ -116,15 +117,18 @@ public class TestTime {
 
         Map<String, Integer> detail = getDateDetail(strDate, format);
 
-        String expression = detail.get("second") + " " + detail.get("minute") + " " + detail.get("hour") + " "
-                + detail.get("date") + " " + detail.get("month") + " ? " + detail.get("year");
+        String expression =
+                detail.get("second") + " " + detail.get("minute") + " " + detail.get("hour") + " "
+                        + detail.get("date") + " " + detail.get("month") + " ? " + detail
+                        .get("year");
         System.out.println(expression);
 
         Date date = null;
         try {
             SimpleDateFormat formatter = new SimpleDateFormat(format);
             date = formatter.parse(strDate);
-        } catch (ParseException e) {}
+        } catch (ParseException e) {
+        }
 
         System.out.println(90 * 24 * 60 * 60 * 1000L);
 
@@ -240,7 +244,7 @@ public class TestTime {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(" yyyy-MM-dd'T'HH:mm:ss");
             Date parse = simpleDateFormat.parse(str);
             System.out.println(parse.toString());
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }

@@ -1,10 +1,13 @@
 package cn.jasonhu.jdbc;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.core.MybatisConfiguration;
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.core.config.GlobalConfig.DbConfig;
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import javax.sql.DataSource;
-
 import org.apache.ibatis.logging.stdout.StdOutImpl;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,21 +34,27 @@ public class SqlFactoryConfig implements TransactionManagementConfigurer {
 
     @Bean(name = "sqlSessionFactory")
     public SqlSessionFactory sqlSessionFactoryBean() {
-        SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
+        MybatisSqlSessionFactoryBean sessionFactoryBean = new MybatisSqlSessionFactoryBean();
         sessionFactoryBean.setDataSource(dataSource);
 
         SqlSessionFactory bean;
         // 添加XML目录
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
-            org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session
-                    .Configuration();
+            MybatisConfiguration configuration = new MybatisConfiguration();
             configuration.setMapUnderscoreToCamelCase(true);
-            if (!prod){
+            if (!prod) {
                 configuration.setLogImpl(StdOutImpl.class);
             }
             sessionFactoryBean.setConfiguration(configuration);
-            sessionFactoryBean.setMapperLocations(resolver.getResources("classpath:mapper/*Mapper.xml"));
+            sessionFactoryBean
+                    .setMapperLocations(resolver.getResources("classpath:mapper/*Mapper.xml"));
+
+            GlobalConfig globalConfig = new GlobalConfig();
+            DbConfig dbConfig = new DbConfig();
+            dbConfig.setIdType(IdType.AUTO);
+            globalConfig.setDbConfig(dbConfig);
+            sessionFactoryBean.setGlobalConfig(globalConfig);
             bean = sessionFactoryBean.getObject();
         } catch (Exception e) {
             throw new RuntimeException(e);

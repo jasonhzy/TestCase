@@ -22,9 +22,8 @@ import java.util.List;
 
 /**
  * JestClient + elasticsearch
- *
- *  参考资料：
- *  1、http://www.voidcn.com/article/p-cvtdvhla-brb.html
+ * <p>
+ * 参考资料： 1、http://www.voidcn.com/article/p-cvtdvhla-brb.html
  */
 //分组查询
 //1、根据team分组
@@ -157,10 +156,12 @@ public class TestElastic {
         try {
             client = ElasticUtil.getClient();
             QueryBuilder query = QueryBuilders.boolQuery()
-                    .must(QueryBuilders.termsQuery(ACCOUNT_KEYWORD, new String[]{"123456", "789012"}))
+                    .must(QueryBuilders
+                            .termsQuery(ACCOUNT_KEYWORD, new String[]{"123456", "789012"}))
                     .must(QueryBuilders.termQuery(ROOM_KEYWORD, MSG_TYPE));
             //聚合按照from_account分组，求count
-            AggregationBuilder aggregation = AggregationBuilders.terms("accountAgg").field(ACCOUNT_KEYWORD);
+            AggregationBuilder aggregation = AggregationBuilders.terms("accountAgg")
+                    .field(ACCOUNT_KEYWORD);
 
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
             searchSourceBuilder.query(query)
@@ -178,7 +179,8 @@ public class TestElastic {
             System.out.println("====");
             System.out.println(result.getSourceAsString());
             //首先取最外层的聚合，拿到桶
-            List<TermsAggregation.Entry> accountAgg = result.getAggregations().getTermsAggregation("accountAgg").getBuckets();
+            List<TermsAggregation.Entry> accountAgg = result.getAggregations()
+                    .getTermsAggregation("accountAgg").getBuckets();
             for (TermsAggregation.Entry entry : accountAgg) { //循环桶，每个分组里的值
                 System.out.println(entry.getKey() + "===" + entry.getCount());
             }

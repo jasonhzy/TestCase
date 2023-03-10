@@ -42,6 +42,7 @@ public class TestSync {
             }
         }
     }
+
     // 静态同步代码块
     public static synchronized void test3() {
         int count = 5;
@@ -65,7 +66,7 @@ public class TestSync {
 
     public static void main(String[] args) {
         TestSync sync = new TestSync();
-        new Thread(new Runnable(){
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 //sync.test();
@@ -73,13 +74,13 @@ public class TestSync {
             }
         }, "t1").start();
 
-        new Thread(new Runnable(){
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 //sync.test();
                 //sync.test1();
                 TestSync.test3();
             }
-        },"t2").start();
+        }, "t2").start();
     }
 }

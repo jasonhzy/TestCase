@@ -1,9 +1,12 @@
 package cn.jasonhu.commons.entity;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
-public class User {
+@Accessors(chain = true)
+public class Teacher {
+
 
     private Integer id;
 

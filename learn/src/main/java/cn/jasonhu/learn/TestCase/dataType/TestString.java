@@ -7,10 +7,14 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
@@ -25,11 +29,20 @@ public class TestString {
         String s3 = "Program";
         String s4 = "ming";
         String s5 = "Program" + "ming";
-        String s6 = s3 + s4; // jad 反编译结果即：String s6 = (new StringBuilder()).append(s3).append(s4).toString();
+        String s6 = s3
+                + s4; // jad 反编译结果即：String s6 = (new StringBuilder()).append(s3).append(s4).toString();
         String s7 = new String("Programming");
         String s8 = s3.concat(s4);
         String s9 = s1.concat("");
-        String s10 = "Program" + new String("ming"); //jad 反编译结果即：String s10 = (new StringBuilder()).append("Program").append(new String("ming")).toString();
+        String s10 = "Program" + new String(
+                "ming"); //jad 反编译结果即：String s10 = (new StringBuilder()).append("Program").append(new String("ming")).toString();
+
+        final String s11 = "Program";
+        final String s12 = "ming";
+        String s13 = s11 + s12;
+
+        System.out.println(s1 == s4);
+
         System.out.println(s1 == s2); // false
         System.out.println(s2 == s2.intern()); // false
 
@@ -48,6 +61,9 @@ public class TestString {
         System.out.println(s1 == s8); // false
         System.out.println(s1 == s9); // true
         System.out.println(s1 == s10); // false
+
+        // 对于final字段，编译期直接进行了常量替换（而对于非final字段则是在运行期进行赋值处理的）
+        System.out.println("s1 == s13 ? " + (s1 == s13)); // true
     }
 
     // String 字符串常量，不可变的，线程安全
@@ -77,7 +93,7 @@ public class TestString {
     @Test
     public void testSubstring() {
         String subStr = "123456789";
-        // 示例1、正常情况：由下面两个例子可以发现下标是从1而不是0开始的
+        // 示例1、正常情况：由下面两个例子可以发现下标是从0不是1开始的
         System.out.println(subStr.substring(0));// 输出:123456789
         System.out.println(subStr.substring(1));// 输出:23456789
         System.out.println(subStr.substring(subStr.length()));// 输出空符串
@@ -158,7 +174,7 @@ public class TestString {
 
     /**
      * 编写一个程序来打印String的所有排列？
-     *
+     * <p>
      * 排列是有序的字符列表的元素的重新排列，使得每个排列相对于其他排列是唯一的。 例如下面是字符串“ABC”的排列 – ABC ACB BAC BCA CBA CAB。
      */
     public static Set<String> getPermutations(String string) {
@@ -170,15 +186,20 @@ public class TestString {
         } else {
             // First character in String
             char initial = string.charAt(0);
+            System.out.print("initial = " + initial + " ");
             // Full string without first character
             String rem = string.substring(1);
+            System.out.println("rem = " + rem);
             // Recursive call
             Set<String> wordSet = getPermutations(rem);
+            System.out.println("wordSet===" + wordSet);
             for (String word : wordSet) {
+                System.out.println("word = " + word + "|");
                 for (int i = 0; i <= word.length(); i++) {
                     permutationsSet.add(charInsertAt(word, initial, i));
                 }
             }
+            System.out.println();
         }
         return permutationsSet;
     }
@@ -186,12 +207,14 @@ public class TestString {
     public static String charInsertAt(String str, char c, int position) {
         String begin = str.substring(0, position);
         String end = str.substring(position);
+        System.out.println("begin=" + begin + " end=" + end + " mid=" + c );
         return begin + c + end;
     }
 
     @Test
     public void testPermutation() {
-        System.out.println(getPermutations("ABC"));
+        //System.out.println(getPermutations("ABC"));
+        System.out.println(getPermutations("OLL"));
         // Prints
         // [ACB, BCA, ABC, CBA, BAC, CAB]
     }
@@ -280,8 +303,8 @@ public class TestString {
                 default:
                     System.out.println("null");
             }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("===>>>" + e.getMessage());
         }
 
         String str = "hello ";
@@ -303,8 +326,9 @@ public class TestString {
 
     @Test
     public void testList() {
-        List<String> ACTIVITY_DAYS = Arrays.asList("2020-02-27", "2020-02-28", "2020-02-29", "2020-03-01", "2020-03-02",
-                "2020-03-03", "2020-03-06", "2020-03-07", "2020-03-08", "2020-03-09");
+        List<String> ACTIVITY_DAYS = Arrays
+                .asList("2020-02-27", "2020-02-28", "2020-02-29", "2020-03-01", "2020-03-02",
+                        "2020-03-03", "2020-03-06", "2020-03-07", "2020-03-08", "2020-03-09");
 
         System.out.println(ACTIVITY_DAYS.contains("2020-03-08"));
 
@@ -432,15 +456,15 @@ public class TestString {
     }
 
     @Test
-    public void testHashcode(){
+    public void testHashcode() {
         String str1 = "通话";
         String str2 = "重地";
-        System.out.println(String.format("str1：%d | str2：%d",  str1.hashCode(),str2.hashCode()));
+        System.out.println(String.format("str1：%d | str2：%d", str1.hashCode(), str2.hashCode()));
         System.out.println(str1.equals(str2));
     }
 
     @Test
-    public void testH24MM(){
+    public void testH24MM() {
         String time = "2020-11-10 21:10";
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
@@ -458,18 +482,18 @@ public class TestString {
 
 
     @Test
-    public void testSplitStr(){
+    public void testSplitStr() {
         String str = " 1,3,3";
         String[] arr = str.split(",");
-        System.out.println("==>"+ arr.length);
+        System.out.println("==>" + arr.length);
 
         List<Long> ids = Arrays.stream(arr).distinct()
-                .map(s ->Long.parseLong(s.trim())).collect(Collectors.toList());
+                .map(s -> Long.parseLong(s.trim())).collect(Collectors.toList());
         System.out.println(JSON.toJSONString(ids));
     }
 
     @Test
-    public void testMd5(){
+    public void testMd5() {
 //        String str = "111111";
 //        String key = "72aaa27d";
 
@@ -496,7 +520,7 @@ public class TestString {
     }
 
     @Test
-    public void testStringFormat(){
+    public void testStringFormat() {
         String str = String.format("%02x", 1000);
         System.out.println(str);
 
@@ -508,7 +532,8 @@ public class TestString {
         System.out.println(path);
 
         String str1 = String
-                .format("A3%02X-%08X-%08X-%08X-%08X", 255, 999999999, 999999999, 999999999, 999999999);
+                .format("A3%02X-%08X-%08X-%08X-%08X", 255, 999999999, 999999999, 999999999,
+                        999999999);
         System.out.println(str1);
 
         Integer a = Integer.valueOf("11111111", 2);
@@ -530,7 +555,7 @@ public class TestString {
 
                 for (int i = 0; i < strModules.length(); i++) {
                     char ch = strModules.charAt(i);
-                    if(ch == '0'){
+                    if (ch == '0') {
 
                     }
                 }
@@ -541,7 +566,7 @@ public class TestString {
     }
 
     @Test
-    public void testJson(){
+    public void testJson() {
         String license = "341BBD0E-0D9D-A102-3B9AC9FF3B9AC9FF-3B9AC9FF3B9AC9FF-B9DDD89CA1F0";
         String[] detail = license.split("-");
         if (detail[3].length() != 16 || detail[4].length() != 16) {
@@ -564,4 +589,29 @@ public class TestString {
         System.out.println(spare.intValue());
     }
 
+    @Test
+    public void testIntern(){
+        // 当通过语句str.intern()调用intern()方法后，JVM 就会在当前类的常量池中查找是否存在与str等值的String，
+        // 若存在则直接返回常量池中相应Strnig的引用；若不存在，则会在常量池中创建一个等值的String，
+        // 然后返回这个String在常量池中的引用。
+        //String str1 = new String("SEU") + new String("Calvin");
+        //System.out.println(str1.intern() == str1);
+        //System.out.println(str1 == "SEUCalvin");
+
+        String str2 = "SEUCalvin";//新加的一行代码，其余不变
+        String str1 = new String("SEU")+ new String("Calvin");
+        System.out.println(str1.intern() == str1); // false
+        System.out.println(str1 == "SEUCalvin"); // false
+    }
+
+    @Test
+    public void test(){
+        System.out.println(42 == 42.0);
+
+        System.out.println("ABC".substring(0,0));
+    }
 }
+
+//String 真正不可变有下面几点原因：
+//1、保存字符串的数组被 final 修饰且为私有的，并且String 类没有提供/暴露修改这个字符串的方法。
+//2、String 类被 final 修饰导致其不能被继承，进而避免了子类破坏 String 不可变。

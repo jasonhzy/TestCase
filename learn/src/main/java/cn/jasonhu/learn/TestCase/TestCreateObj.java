@@ -41,7 +41,7 @@ import java.util.UUID;
 //所谓的序列化：就是把对象通过流的方式存储到文件中. 注意：此对象要重写Serializable接口才能被序列化
 //反序列化: 把字节内容读取进来，还原为java对象 ObjectInputStream用来读取字节内容，还原（反序列化）为java对象
 
-class Student implements Cloneable , Serializable {
+class Student implements Cloneable, Serializable {
 //    private static final long serialVersionUID = 1L;
 
     private int id;
@@ -91,7 +91,8 @@ public class TestCreateObj {
         Student student = constructor.newInstance();
         student.print("cn/jasonhu/learn");
 
-        Constructor<Student> constructor1 = Student.class.getDeclaredConstructor(new Class[]{Integer.class});
+        Constructor<Student> constructor1 = Student.class
+                .getDeclaredConstructor(new Class[]{Integer.class});
         Student student1 = constructor1.newInstance(new Object[]{1});
         student1.printParam();
     }
@@ -102,8 +103,8 @@ public class TestCreateObj {
         Student s2 = (Student) s1.clone();
         Student s3 = s1;
 
-        System.out.println(s1 == s2);
-        System.out.println(s1 == s3);
+        System.out.println(s1 == s2); // false
+        System.out.println(s1 == s3); // true
     }
 
     @Test

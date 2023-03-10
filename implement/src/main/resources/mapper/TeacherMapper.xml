@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.jasonhu.impl.mapper.TeacherMapper">
+  <resultMap id="BaseResultMap" type="cn.jasonhu.commons.entity.Teacher">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="username" jdbcType="VARCHAR" property="username"/>
+    <result column="age" jdbcType="INTEGER" property="age"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, username, age
+  </sql>
+
+  <select id="getTeacherList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from teacher
+  </select>
+
+</mapper>

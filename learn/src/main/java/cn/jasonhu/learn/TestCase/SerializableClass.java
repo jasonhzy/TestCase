@@ -19,6 +19,7 @@ import java.io.Serializable;
 //如果相同就认为是一致的，可以进行反序列化，否则就会出现序列化版本不一致的异常。(InvalidCastException)
 
 public class SerializableClass implements Serializable {
+
     private static final long serialVersionUID = -7020619477594468968L;
 }
 

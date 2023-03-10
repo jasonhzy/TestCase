@@ -7,28 +7,23 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 
 /**
- * 日期时间API，旧版存在的问题：
- * 1、非线程安全 − java.util.Date 是非线程安全的，所有的日期类都是可变的
- * 2、设计很差 − Java的日期/时间类的定义并不一致，在java.util和java.sql的包中都有日期类，此外用于格式化和解析的类在java.text包中定义。
- *      java.util.Date同时包含日期和时间，而java.sql.Date仅包含日期，将其纳入java.sql包并不合理
- * 3、时区处理麻烦 − 日期类并不提供国际化，没有时区支持，因此Java引入了java.util.Calendar和java.util.TimeZone类
- *
- *
- * 新日期时间 API，全新的日期时间API，这套API设计合理，是线程安全的。新的日期及时间API位于 java.time 包中，下面是一些关键类。
- *  LocalDate ：表示日期，包含年月日，格式为 2019-10-16
- *  LocalTime ：表示时间，包含时分秒，格式为 16:38:54.158549300
- *  LocalDateTime ：表示日期时间，包含年月日，时分秒，格式为 2018-09-06T15:33:56.750
- *  DateTimeFormatter ：日期时间格式化类。
- *  Instant：时间戳，表示一个特定的时间瞬间。
- *  Duration：用于计算2个时间(LocalTime，时分秒)的距离
- *  Period：用于计算2个日期(LocalDate，年月日)的距离
- *  ZonedDateTime ：包含时区的时间
+ * 日期时间API，旧版存在的问题： 1、非线程安全 − java.util.Date 是非线程安全的，所有的日期类都是可变的 2、设计很差 −
+ * Java的日期/时间类的定义并不一致，在java.util和java.sql的包中都有日期类，此外用于格式化和解析的类在java.text包中定义。
+ * java.util.Date同时包含日期和时间，而java.sql.Date仅包含日期，将其纳入java.sql包并不合理 3、时区处理麻烦 −
+ * 日期类并不提供国际化，没有时区支持，因此Java引入了java.util.Calendar和java.util.TimeZone类
+ * <p>
+ * <p>
+ * 新日期时间 API，全新的日期时间API，这套API设计合理，是线程安全的。新的日期及时间API位于 java.time 包中，下面是一些关键类。 LocalDate
+ * ：表示日期，包含年月日，格式为 2019-10-16 LocalTime ：表示时间，包含时分秒，格式为 16:38:54.158549300 LocalDateTime
+ * ：表示日期时间，包含年月日，时分秒，格式为 2018-09-06T15:33:56.750 DateTimeFormatter ：日期时间格式化类。
+ * Instant：时间戳，表示一个特定的时间瞬间。 Duration：用于计算2个时间(LocalTime，时分秒)的距离 Period：用于计算2个日期(LocalDate，年月日)的距离
+ * ZonedDateTime ：包含时区的时间
  */
 public class LocalDateTimeClass {
 
     // LocalDate: 表示日期,有年月日
     @Test
-    public void testLocalDate(){
+    public void testLocalDate() {
         LocalDate date = LocalDate.of(2020, 4, 1);
         System.out.println("date = " + date);
 
@@ -83,7 +78,7 @@ public class LocalDateTimeClass {
         System.out.println("修改月份: " + now.withMonth(6));
         System.out.println("修改小时: " + now.withHour(9));
         System.out.println("修改分钟: " + now.withMinute(11));
-        System.out.println( now.withYear(2021).withMonth(1).withHour(11).withMinute(11));
+        System.out.println(now.withYear(2021).withMonth(1).withHour(11).withMinute(11));
         // 再当前对象的基础上加上或减去指定的时间
         LocalDateTime localDateTime = now.plusDays(5);
         System.out.println("5天后: " + localDateTime);
@@ -107,7 +102,7 @@ public class LocalDateTimeClass {
 
     //时间格式化与解析，通过 java.time.format.DateTimeFormatter 类可以进行日期时间解析与格式化。
     @Test
-    public void test7(){
+    public void test7() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String format = now.format(dtf);
@@ -158,10 +153,8 @@ public class LocalDateTimeClass {
     }
 
     /**
-     * 有时我们可能需要获取例如：将日期调整到“下一个月的第一天”等操作。可以通过时间校正器来进行。
-     * TemporalAdjuster : 时间校正器。
-     * TemporalAdjusters : 该类通过静态方法提供了大量的常用TemporalAdjuster的实现。
-     *
+     * 有时我们可能需要获取例如：将日期调整到“下一个月的第一天”等操作。可以通过时间校正器来进行。 TemporalAdjuster : 时间校正器。 TemporalAdjusters :
+     * 该类通过静态方法提供了大量的常用TemporalAdjuster的实现。
      */
     @Test
     public void testTemporalAdjuster() {
@@ -170,13 +163,14 @@ public class LocalDateTimeClass {
         System.out.println(ld.with(TemporalAdjusters.firstDayOfNextYear()));   // 2021-01-01 年初
         System.out.println(ld.with(TemporalAdjusters.lastDayOfMonth()));       // 2020-03-31 月末
         System.out.println(ld.with(TemporalAdjusters.lastDayOfYear()));        // 2020-12-31 年末
-        System.out.println(ld.with(TemporalAdjusters.next(DayOfWeek.SUNDAY)));           // 2020-04-05 下周日
-        System.out.println(ld.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY))); // 2020-03-30 前一个或相同的周一
+        System.out.println(
+                ld.with(TemporalAdjusters.next(DayOfWeek.SUNDAY)));           // 2020-04-05 下周日
+        System.out.println(ld.with(TemporalAdjusters
+                .previousOrSame(DayOfWeek.MONDAY))); // 2020-03-30 前一个或相同的周一
     }
 
     /**
-     * 设置日期时间的时区
-     * Java8 中加入了对时区的支持，LocalDate、LocalTime、LocalDateTime是不带时区的，带时区的日期时间类分别
+     * 设置日期时间的时区 Java8 中加入了对时区的支持，LocalDate、LocalTime、LocalDateTime是不带时区的，带时区的日期时间类分别
      * 为：ZonedDate、ZonedTime、ZonedDateTime。其中每个时区都对应着 ID，ID的格式为 “区域/城市” 。例如 ：Asia/Shanghai 等。
      * ZoneId：该类中包含了所有的时区信息。
      */
@@ -199,15 +193,18 @@ public class LocalDateTimeClass {
 
         // 使用指定的时区创建日期时间
         ZonedDateTime now2 = ZonedDateTime.now(ZoneId.of("America/Vancouver"));
-        System.out.println("now2 = " + now2); // now2 = 2020-03-31T07:43:42.293-07:00[America/Vancouver]
+        System.out.println(
+                "now2 = " + now2); // now2 = 2020-03-31T07:43:42.293-07:00[America/Vancouver]
 
         // 修改时区
         // withZoneSameInstant: 即更改时区,也更改时间
         ZonedDateTime withZoneSameInstant = now2.withZoneSameInstant(ZoneId.of("Asia/Shanghai"));
-        System.out.println("withZoneSameInstant = " + withZoneSameInstant); //withZoneSameInstant = 2020-03-31T22:43:42.293+08:00[Asia/Shanghai]
+        System.out.println("withZoneSameInstant = "
+                + withZoneSameInstant); //withZoneSameInstant = 2020-03-31T22:43:42.293+08:00[Asia/Shanghai]
 
         // withZoneSameLocal: 只更改时区,不更改时间
         ZonedDateTime withZoneSameLocal = now2.withZoneSameLocal(ZoneId.of("Asia/Shanghai"));
-        System.out.println("withZoneSameLocal = " + withZoneSameLocal); // withZoneSameLocal = 2020-03-31T07:43:42.293+08:00[Asia/Shanghai]
+        System.out.println("withZoneSameLocal = "
+                + withZoneSameLocal); // withZoneSameLocal = 2020-03-31T07:43:42.293+08:00[Asia/Shanghai]
     }
 }

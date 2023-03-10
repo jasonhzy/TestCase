@@ -6,6 +6,7 @@ import java.io.*;
 //https://blinkfox.github.io/2018/11/05/hou-duan/java/java-io-zhi-shi-zheng-li/
 
 public class FileRead {
+
     /**
      * 以字节为单位读取文件，常用于读二进制文件，如图片、声音、影像等文件。
      */

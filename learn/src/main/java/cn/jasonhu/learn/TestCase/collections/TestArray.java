@@ -1,9 +1,10 @@
 package cn.jasonhu.learn.TestCase.collections;
 
 import com.alibaba.fastjson.JSONObject;
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.List;
-import org.junit.Test;
 
 public class TestArray {
 

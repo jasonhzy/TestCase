@@ -1,8 +1,7 @@
 package cn.jasonhu.learn.TestCase.dataType;
 
-import org.junit.Test;
-
 import java.math.BigDecimal;
+import org.junit.Test;
 
 public class TestBigDecimal {
 
@@ -10,8 +9,11 @@ public class TestBigDecimal {
     public void testBigDecimal() {
         Double a = 0.3;
 
-        BigDecimal b1 = new BigDecimal(a); //不推荐此方式，BigDecimal(double)存在精度损失风险
-        BigDecimal b2 = BigDecimal.valueOf(a); //推荐方式
+        // 不推荐此方式，BigDecimal(double)存在精度损失风险
+        // 浮点数没有办法用二进制精确表示，因此存在精度丢失的风险
+        BigDecimal b1 = new BigDecimal(a);
+        // 推荐方式, 以下两种方式等价的
+        BigDecimal b2 = BigDecimal.valueOf(a);
         BigDecimal b3 = new BigDecimal("0.3");
 
         System.out.println(b1);

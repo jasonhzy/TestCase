@@ -10,8 +10,8 @@ public class SimpleJVMArg {
     }
 
     /**
-     * VM arg：-verbose:gc -Xms200M -Xmx200M -Xmn100M -XX:+PrintGCDetails -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=1 -XX:+PrintTenuringDistribution
-     * -XX:+UseSerialGC
+     * VM arg：-verbose:gc -Xms200M -Xmx200M -Xmn100M -XX:+PrintGCDetails -XX:SurvivorRatio=8
+     * -XX:MaxTenuringThreshold=1 -XX:+PrintTenuringDistribution -XX:+UseSerialGC
      */
     @SuppressWarnings("unused")
     public static void demo() {

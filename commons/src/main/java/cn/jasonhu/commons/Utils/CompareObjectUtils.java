@@ -19,9 +19,8 @@ public class CompareObjectUtils {
     private static final String NEW_VALUE = "newValue";
 
     /**
-     *
-     * @param oldStr    源JSONStr
-     * @param newStr    目标JSONStr
+     * @param oldStr 源JSONStr
+     * @param newStr 目标JSONStr
      * @return
      */
     public static List<CompareJsonResult> compareJsonObjectWithStr(String oldStr, String newStr) {
@@ -32,13 +31,13 @@ public class CompareObjectUtils {
     }
 
     /**
-     *
-     * @param oldJson           源JSON
-     * @param newJson           目标JSON
-     * @param notContainList    不包含的字段
+     * @param oldJson        源JSON
+     * @param newJson        目标JSON
+     * @param notContainList 不包含的字段
      * @return
      */
-    public static List<CompareJsonResult> compareJsonObjectWithJSON(JSON oldJson, JSON newJson, List<String> notContainList) {
+    public static List<CompareJsonResult> compareJsonObjectWithJSON(JSON oldJson, JSON newJson,
+            List<String> notContainList) {
         //递归遍历json对象所有的key-value，将其封装成path:value格式进行比较
         Map<String, Object> oldMap = new LinkedHashMap<>();
         Map<String, Object> newMap = new LinkedHashMap<>();
@@ -52,6 +51,7 @@ public class CompareObjectUtils {
 
     /**
      * 比较对象，获取所有比较后的字段
+     *
      * @param oldObject
      * @param newObject
      * @param <T>
@@ -63,13 +63,15 @@ public class CompareObjectUtils {
 
     /**
      * 比较对象，获取比较修改并且过滤后的字段
+     *
      * @param oldObject
      * @param newObject
      * @param notContainList
      * @param <T>
      * @return
      */
-    public static <T> List<CompareJsonResult> compareJsonObject(T oldObject, T newObject, List<String> notContainList) {
+    public static <T> List<CompareJsonResult> compareJsonObject(T oldObject, T newObject,
+            List<String> notContainList) {
         //将字符串转换为json对象
         JSON oldJson = toJSON(oldObject);
         JSON newJson = toJSON(newObject);
@@ -78,6 +80,7 @@ public class CompareObjectUtils {
 
     /**
      * 对象转JSON
+     *
      * @param obj
      * @param <T>
      * @return
@@ -121,7 +124,7 @@ public class CompareObjectUtils {
      * 比较两个map，返回不同数据
      */
     private static Map<String, Object> compareMap(Map<String, Object> oldMap,
-        Map<String, Object> newMap) {
+            Map<String, Object> newMap) {
         //遍历newMap，将newMap的不同数据装进oldMap，同时删除oldMap中与newMap相同的数据
         campareNewToOld(oldMap, newMap);
         //將舊的有新的沒有的數據封裝數據結構存在舊的裡面
@@ -135,7 +138,7 @@ public class CompareObjectUtils {
     private static void campareOldToNew(Map<String, Object> oldMap) {
         //统一oldMap中newMap不存在的数据的数据结构，便于解析
         for (Iterator<Map.Entry<String, Object>> it = oldMap.entrySet().iterator();
-            it.hasNext(); ) {
+                it.hasNext(); ) {
             Map.Entry<String, Object> item = it.next();
             String key = item.getKey();
             Object value = item.getValue();
@@ -154,7 +157,7 @@ public class CompareObjectUtils {
      */
     private static void campareNewToOld(Map<String, Object> oldMap, Map<String, Object> newMap) {
         for (Iterator<Map.Entry<String, Object>> it = newMap.entrySet().iterator();
-            it.hasNext(); ) {
+                it.hasNext(); ) {
             Map.Entry<String, Object> item = it.next();
             String key = item.getKey();
             Object newValue = item.getValue();
@@ -181,9 +184,11 @@ public class CompareObjectUtils {
 
     /**
      * 将已经找出不同数据的map根据key的层级结构封装成json返回
+     *
      * @return
      */
-    private static List<CompareJsonResult> convertMapToJson(Map<String, Object> map, List<String> notContainList) {
+    private static List<CompareJsonResult> convertMapToJson(Map<String, Object> map,
+            List<String> notContainList) {
         JSONObject resultJSONObject = new JSONObject();
         for (Iterator<Map.Entry<String, Object>> it = map.entrySet().iterator(); it.hasNext(); ) {
             Map.Entry<String, Object> item = it.next();
@@ -270,11 +275,13 @@ public class CompareObjectUtils {
 
     /**
      * 将数据转换为对象
+     *
      * @param resultJSONObject
      * @param notContainList
      * @return
      */
-    private static List<CompareJsonResult> dealResultWithJsonObject(JSONObject resultJSONObject, List<String> notContainList) {
+    private static List<CompareJsonResult> dealResultWithJsonObject(JSONObject resultJSONObject,
+            List<String> notContainList) {
         List<CompareJsonResult> resultList = new ArrayList<>();
 
         Map<String, Object> objectMap = resultJSONObject.getInnerMap();
@@ -299,6 +306,7 @@ public class CompareObjectUtils {
     @Data
     @Accessors(chain = true)
     private static class TestCase {
+
         private String name;
         private String value;
     }
