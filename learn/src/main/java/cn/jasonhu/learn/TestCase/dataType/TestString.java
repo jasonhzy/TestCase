@@ -1,6 +1,6 @@
 package cn.jasonhu.learn.TestCase.dataType;
 
-import cn.jasonhu.commons.Utils.MD5Util;
+import cn.jasonhu.commons.utils.MD5Util;
 import com.alibaba.fastjson.JSON;
 import java.io.File;
 import java.io.UnsupportedEncodingException;

@@ -1,4 +1,4 @@
-package cn.jasonhu.commons.Utils;
+package cn.jasonhu.commons.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

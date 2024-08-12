@@ -1,4 +1,4 @@
-package cn.jasonhu.commons.Utils;
+package cn.jasonhu.commons.utils;
 
 import java.security.MessageDigest;
 

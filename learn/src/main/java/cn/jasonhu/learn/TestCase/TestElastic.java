@@ -1,6 +1,6 @@
 package cn.jasonhu.learn.TestCase;
 
-import cn.jasonhu.commons.Utils.ElasticUtil;
+import cn.jasonhu.commons.utils.ElasticUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.JsonObject;
 import io.searchbox.client.JestClient;

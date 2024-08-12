@@ -1,4 +1,4 @@
-package cn.jasonhu.commons.Utils;
+package cn.jasonhu.commons.utils;
 
 import cn.jasonhu.commons.dto.CompareJsonResult;
 import com.alibaba.fastjson.JSON;
