@@ -67,6 +67,18 @@
       <groupId>com.taosdata.jdbc</groupId>
       <artifactId>taos-jdbcdriver</artifactId>
     </dependency>
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.xiaoymin</groupId>
+      <artifactId>swagger-bootstrap-ui</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
