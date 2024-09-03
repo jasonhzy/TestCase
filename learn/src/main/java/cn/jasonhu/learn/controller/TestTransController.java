@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +32,12 @@ public class TestTransController {
     @ApiOperation(value = "获取学生列表")
     public ResponseResult getStudentList() {
         return ResponseResult.success(testTransService.getUserList("student"));
+    }
+
+    @GetMapping("/student/{id}")
+    @ApiOperation(value = "获取学生信息")
+    public ResponseResult getStudentList(@PathVariable Integer id) {
+        return ResponseResult.success(testTransService.getUserById(id));
     }
 
     @GetMapping("/propagation/required")

@@ -8,6 +8,8 @@ public interface TestTransService {
 
     Object getUserList(String type);
 
+    Object getUserById(Integer id);
+
     void noTransExceptionRequired();
 
     void noTransRequiredException();

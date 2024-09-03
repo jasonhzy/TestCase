@@ -40,6 +40,11 @@ public class TestTransServiceImpl implements TestTransService {
         return obj;
     }
 
+    @Override
+    public Object getUserById(Integer id) {
+        return studentService.getUserById(id);
+    }
+
     /**
      * 1、Propagation.REQUIRED 1.1 外围方法未开启事务，内部方法在自己的事务中独立运行，外围方法异常不影响内部方法独立的事务。
      */

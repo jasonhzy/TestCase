@@ -8,6 +8,8 @@ public interface StudentService extends IService<Student> {
 
     List<Student> getStudentList();
 
+    Student getUserById(Integer id);
+
     void addRequired(Student student);
 
     void addRequiredException(Student student);

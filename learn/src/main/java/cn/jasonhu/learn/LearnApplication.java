@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
         ElasticsearchDataAutoConfiguration.class,
         ElasticsearchRepositoriesAutoConfiguration.class, JestAutoConfiguration.class,
         DataSourceAutoConfiguration.class})
-@ComponentScan(basePackages = {"cn.jasonhu.learn", "cn.jasonhu.jdbc", "cn.jasonhu.impl", "cn.jasonhu.commons"})
+@ComponentScan(basePackages = {"cn.jasonhu.commons", "cn.jasonhu.jdbc", "cn.jasonhu.impl", "cn.jasonhu.learn"})
 @MapperScan({"cn.jasonhu.impl.mapper"})
 @EnableScheduling
 @EnableAsync

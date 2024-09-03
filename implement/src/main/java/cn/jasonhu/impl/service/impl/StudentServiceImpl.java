@@ -19,6 +19,10 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
         return baseMapper.selectList(null);
     }
 
+    public Student getUserById(Integer id) {
+        return baseMapper.selectById(id);
+    }
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void addRequired(Student student) {

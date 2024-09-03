@@ -1,0 +1,46 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: learn
+  http: # upload file
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+      location: /data/tmpUpload # update temp dir
+  redis:
+    # Redis服务器连接密码
+    mode: single # single:单机模式 cluster:集群模式 # sentinel:哨兵模式
+    host: localhost
+    password: hc_2020
+    port: 6379
+    client-type: jedis  # jedis:jedis连接池 # lettuce:lettuce连接池
+    client-name: learn
+    # cluster模式和sentinel不可同时配置，否则启动项目会报错
+#    sentinel:
+#      master: mymaster
+#      # 哨兵ip和端口
+#      nodes: 172.27.30.119:26379,172.27.30.119:26380
+#    cluster:
+#      nodes: 172.27.30.119:6379,172.27.30.119:6380,172.27.30.119:6381,172.27.30.119:6382,172.27.30.119:6383,172.27.30.119:6384
+#      max-redirects: 3
+    jedis: # 或使用lettuce redis连接池
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait:
+        min-idle: 0
+  
+# netty
+netty:
+  socket:
+    boss: 4  # boss线程数量
+    worker: 2 # worker线程数量
+    timeout: 6000 # 连接超时时间
+    port: 8888 # 服务器主端口
+    backupPort: 8889 # 服务器备用端口
+    host: 127.0.0.1 # 服务器地址
+
+
