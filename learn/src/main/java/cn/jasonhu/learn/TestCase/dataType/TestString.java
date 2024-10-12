@@ -2,23 +2,18 @@ package cn.jasonhu.learn.TestCase.dataType;
 
 import cn.jasonhu.commons.utils.MD5Util;
 import com.alibaba.fastjson.JSON;
+import org.apache.commons.lang.StringUtils;
+import org.junit.Test;
+import org.springframework.util.CollectionUtils;
+
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.InetAddress;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
-import org.apache.commons.lang.StringUtils;
-import org.junit.Test;
-import org.springframework.util.CollectionUtils;
 
 public class TestString {
 

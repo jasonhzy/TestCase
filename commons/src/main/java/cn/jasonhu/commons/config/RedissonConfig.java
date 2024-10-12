@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -76,9 +77,14 @@ public class RedissonConfig {
             clusterServersConfig.setPassword(password);
         }
         // 添加redis节点
+        List<String> clusterNodes = new ArrayList<>();
         for (String node : nodes) {
-            clusterServersConfig.addNodeAddress(REDIS_PROTOCOL_PREFIX + node);
+            clusterNodes.add(REDIS_PROTOCOL_PREFIX + node);
         }
+        clusterServersConfig.addNodeAddress(clusterNodes.toArray(new String[clusterNodes.size()]));
+        // for (String node : nodes) {
+        //     clusterServersConfig.addNodeAddress(REDIS_PROTOCOL_PREFIX + node);
+        // }
         return Redisson.create(config);
     }
 
@@ -88,8 +94,9 @@ public class RedissonConfig {
     private RedissonClient redissonSentinel() {
         // mymaster
         String masterName = redisProperties.getSentinel().getMaster();
-        String nodes = redisProperties.getSentinel().getNodes();
+        List<String> nodes = redisProperties.getCluster().getNodes();
         String password = redisProperties.getPassword();
+        // String password = redisProperties.getSentinel().getPassword();
         // 声明一个配置类
         Config config = new Config();
         SentinelServersConfig sentinelServersConfig = config.useSentinelServers();
@@ -100,12 +107,15 @@ public class RedissonConfig {
             sentinelServersConfig.setPassword(password);
         }
         sentinelServersConfig.setMasterName(masterName);
-        String[] nodeArr = StringUtils.split(nodes, ",");
-        for (int i = 0; i < nodeArr.length; i++) {
-            nodeArr[i] = REDIS_PROTOCOL_PREFIX + nodeArr[i];
-        }
         // 添加redis节点
-        sentinelServersConfig.addSentinelAddress(nodeArr);
+        List<String> sentinelNodes = new ArrayList<>();
+        for (String node : nodes) {
+            sentinelNodes.add(REDIS_PROTOCOL_PREFIX + node);
+        }
+        sentinelServersConfig.addSentinelAddress(sentinelNodes.toArray(new String[sentinelNodes.size()]));
+        // for (String node : nodes) {
+        //     sentinelServersConfig.addSentinelAddress(REDIS_PROTOCOL_PREFIX + node);
+        // }
         return Redisson.create(config);
     }
 }

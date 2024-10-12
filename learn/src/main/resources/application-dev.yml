@@ -1,9 +1,12 @@
 server:
   port: 9000
+  shutdown: graceful #开启优雅停机，默认是立即停机IMMEDIATE
 
 spring:
   application:
     name: learn
+  lifecycle:
+    timeout-per-shutdown-phase: 30s #缓冲器即最大等待时间
   http: # upload file
     multipart:
       enabled: true
@@ -21,6 +24,7 @@ spring:
     # cluster模式和sentinel不可同时配置，否则启动项目会报错
 #    sentinel:
 #      master: mymaster
+#      password: hc_2020
 #      # 哨兵ip和端口
 #      nodes: 172.27.30.119:26379,172.27.30.119:26380
 #    cluster:

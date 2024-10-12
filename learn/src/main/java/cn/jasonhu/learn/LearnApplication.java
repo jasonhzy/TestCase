@@ -3,19 +3,13 @@ package cn.jasonhu.learn;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration;
-import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration;
-import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration;
-import org.springframework.boot.autoconfigure.elasticsearch.jest.JestAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
-@SpringBootApplication(exclude = {ElasticsearchAutoConfiguration.class,
-        ElasticsearchDataAutoConfiguration.class,
-        ElasticsearchRepositoriesAutoConfiguration.class, JestAutoConfiguration.class,
-        DataSourceAutoConfiguration.class})
+@SpringBootApplication(exclude = {
+        DataSourceAutoConfiguration.class
+})
 @ComponentScan(basePackages = {"cn.jasonhu.commons", "cn.jasonhu.jdbc", "cn.jasonhu.impl", "cn.jasonhu.learn"})
 @MapperScan({"cn.jasonhu.impl.mapper"})
 @EnableScheduling
