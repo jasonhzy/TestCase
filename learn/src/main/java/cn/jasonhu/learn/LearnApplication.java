@@ -1,5 +1,7 @@
 package cn.jasonhu.learn;
 
+import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
+import com.alicp.jetcache.anno.config.EnableMethodCache;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +16,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @MapperScan({"cn.jasonhu.impl.mapper"})
 @EnableScheduling
 @EnableAsync
+@EnableMethodCache(basePackages = { "cn.jasonhu.learn" })
+@EnableCreateCacheAnnotation
 public class LearnApplication {
 
     public static void main(String[] args) {

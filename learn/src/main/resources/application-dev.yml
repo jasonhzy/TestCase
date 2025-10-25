@@ -47,4 +47,27 @@ netty:
     backupPort: 8889 # 服务器备用端口
     host: 127.0.0.1 # 服务器地址
 
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson
+      limit: 1000
+  remote:
+    default:
+      type: redis
+      keyConvertor: fastjson
+      valueEncoder: java
+      valueDecoder: java
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      database: 0
+      host: localhost
+      password: hc_2020
+      port: 6379
+
 
